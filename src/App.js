@@ -1,11 +1,13 @@
 import "./App.css";
 import "./normalize.css";
-import Header from "./components/header/Header";
+import Homepage from "./components/pages/Homepage";
 
 function App() {
   return (
     <>
-      <Header />
+      <div className="wrapper" id="wrapper">
+        <Homepage />
+      </div>
     </>
   );
 }

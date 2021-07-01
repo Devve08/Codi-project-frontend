@@ -1,0 +1,16 @@
+.main__image-slider {
+  width: 100%;
+  height: max-content;
+  position: relative;
+}
+
+.main__image-slider--image {
+  width: 100%;
+  height: 20rem;
+}
+
+.image-slider__pagination {
+  position: absolute;
+  bottom: 20px;
+  left: 47%;
+}

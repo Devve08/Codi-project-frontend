@@ -24,7 +24,8 @@ function Header() {
             <img src={Logo} alt="" className="header-container__logo--image" />
           </div>
           <div className="header-container__cart">
-            <button className="header-container__cart--btn">Cart</button>
+            <button className="header-container__cart--btn-login">Login</button>
+            <button className="header-container__cart--btn-cart">Cart</button>
           </div>
         </div>
         <div className="header__navbar">
