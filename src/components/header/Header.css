@@ -113,6 +113,11 @@
   cursor: pointer;
 }
 
+.link{
+  text-decoration: none;
+  color: #000
+}
+
 .header__navbar--ul > li:hover {
   background-size: 100% 3px, auto;
   padding-bottom: 0;
