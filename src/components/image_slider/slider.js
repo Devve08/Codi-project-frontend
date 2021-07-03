@@ -1,21 +1,45 @@
-import React from "react";
-import Logo from "../../images/image.jpg";
+import React, { useState } from "react";
+import imagesData from "./sliderData";
+import { FaArrowAltCircleRight, FaArrowAltCircleLeft } from "react-icons/fa";
 
-function slider() {
+function Slider() {
+  const [image, setImage] = useState(0);
+  const length = imagesData.length;
+
+  const nextImage = () => {
+    setImage(image === length - 1 ? 0 : image + 1);
+  };
+
+  const prevImage = () => {
+    setImage(image === 0 ? length - 1 : image - 1);
+  };
+
+  console.log(image);
   return (
     <>
       {/* Image slider section */}
       <div class="main__image-slider">
-        <img src={Logo} alt="" class="main__image-slider--image" />
-        <div class="image-slider__pagination">
-          <input type="checkbox" />
-          <input type="checkbox" />
-          <input type="checkbox" />
-          <input type="checkbox" />
-        </div>
+        <FaArrowAltCircleLeft className="left-arrow" onClick={prevImage} />
+        <FaArrowAltCircleRight className="right-arrow" onClick={nextImage} />
+        {imagesData.map((item, index) => {
+          return (
+            <div
+              className={index === image ? "slide active" : "slide"}
+              key={index}
+            >
+              {index === image && (
+                <img
+                  className="main__image-slider--image"
+                  src={item.image}
+                  alt=""
+                />
+              )}
+            </div>
+          );
+        })}
       </div>
     </>
   );
 }
 
-export default slider;
+export default Slider;

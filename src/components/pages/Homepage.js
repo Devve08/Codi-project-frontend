@@ -9,6 +9,7 @@ function Homepage() {
       <Header />
       <main class="main">
         <Slider />
+        {/* <Card /> */}
         {/* Cards Section */}
         <div></div>
       </main>
