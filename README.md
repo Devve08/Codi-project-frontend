@@ -11,4 +11,4 @@ This Project is an e-commerce project that aims to sell clothes to all ages.
 
 ## Project makers
 
-This is first Codi group 6 project made by (Mohamad Safa, Antoine Debes, Houssam Halaby)
+This is first Codi group 6 project made by (Mohamad Safa, Antoine Debes, Houssam Halaby).
