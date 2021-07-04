@@ -6,6 +6,8 @@ import ShopMen from "./components/pages/ShopMen";
 import Header from "./components/header/Header";
 import { BrowserRouter as Router, Route, Switch } from "react-router-dom";
 import Footer from "./components/footer/Footer";
+import Contact from "./components/pages/Contact";
+import Sale from "./components/pages/Sale";
 
 function App() {
   return (
@@ -23,6 +25,14 @@ function App() {
           </Route>
           <Route path='/shopmen'>
             <ShopMen />
+            <Footer />
+          </Route>
+          <Route path='/contactus'>
+            <Contact />
+            <Footer />
+          </Route>
+          <Route path='/sale'>
+            <Sale />
             <Footer />
           </Route>
         </Switch>

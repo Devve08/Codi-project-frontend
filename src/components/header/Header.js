@@ -34,31 +34,34 @@ function Header() {
       <div className="header__navbar">
         <ul className="header__navbar--ul">
           <li>
-            <i class="far fa-home"></i>{" "}
             <Link className="link" to="/">
-              {" "}
-              Home{" "}
+              <i class="far fa-home"></i>
+              Home
             </Link>
           </li>
           <li>
-            <i class="far fa-male"></i>{" "}
             <Link className="link" to="/shopmen">
-              {" "}
+              <i class="far fa-male"></i>
               Shop Men
             </Link>
           </li>
           <li>
-            <i class="far fa-female"></i>{" "}
             <Link className="link" to="/shopwomen">
-              {" "}
+              <i class="far fa-female"></i>
               Shop Women
             </Link>
           </li>
           <li>
-            <i class="far fa-tags"></i> Sale
+            <Link className="link" to="/sale">
+              <i class="far fa-tags"></i>
+              Sale
+            </Link>
           </li>
           <li>
-            <i class="far fa-file-signature"></i> Contact us
+            <Link className="link" to="/contactus">
+              <i class="far fa-file-signature"></i>
+              Contact us
+            </Link>
           </li>
         </ul>
       </div>
