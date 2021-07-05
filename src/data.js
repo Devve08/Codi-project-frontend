@@ -10,7 +10,7 @@ const data = {
             description:'High quality product',
             rating: 1,
             numReviews: 12,
-            stock: 14,
+            stock: 0,
             size: 'Medium',
             image: '/imagee/adidas-short1.jpg'
         },
