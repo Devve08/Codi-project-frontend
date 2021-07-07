@@ -29,9 +29,9 @@ export default function WomenCard() {
     <>
     {loading? <Loading />
     :
-    error? <MessageBox />
+    error? <MessageBox error={error} />
     :<>
-    {products.map(product =>  {
+    {products && products.map(product =>  {
         if(product.sex === "female"){
         return<AllProducts product={product} />
         }

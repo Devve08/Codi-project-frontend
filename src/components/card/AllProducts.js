@@ -9,7 +9,6 @@ export default function AllProducts(props) {
               <div className="card_image--container">
                 <Link to={`/product/${props.product._id}`}>
                   <img className="card_image" src={props.product.image} alt="" />
-                  {console.log(props.product)}
                 </Link>
               </div>
               <div className="card_details--container">
