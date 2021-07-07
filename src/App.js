@@ -9,6 +9,7 @@ import Footer from "./components/footer/Footer";
 import Contact from "./pages/Contact";
 import Sale from "./pages/Sale";
 import Product from "./components/product/Product";
+import Signin from "./pages/Signin";
 
 function App() {
   return (
@@ -40,8 +41,13 @@ function App() {
               <Footer />
             </Route>
             <Route path="/product/:id">
-            <Header />
+              <Header />
               <Product />
+              <Footer />
+            </Route>
+            <Route path="/login">
+              <Header />
+              <Signin />
               <Footer />
             </Route>
           </Switch>

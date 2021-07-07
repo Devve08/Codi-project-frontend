@@ -25,7 +25,9 @@ function Header() {
           </h1>
         </div>
         <div className="header-container__cart">
-          <button className="header-container__cart--btn-login">Login</button>
+          <Link to="/login">
+            <button className="header-container__cart--btn-login">Login</button>
+          </Link>
           <button className="header-container__cart--btn-cart">
             Cart <i class="far fa-shopping-cart"></i>
           </button>

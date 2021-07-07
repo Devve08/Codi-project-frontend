@@ -1,0 +1,82 @@
+.main__form {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  bottom: 0;
+  width: 500px;
+  height: 700px;
+  background-color: white;
+  border-radius: 8px;
+  box-shadow: 0px 0px 0px 2000px rgba(0, 0, 0, 0.6);
+}
+
+/* .main__form__sign-in {
+  display: none;
+} */
+
+.form__sign-in {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 1.5rem;
+}
+
+.form__email {
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+}
+
+.form__password {
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+}
+
+.form__btn {
+  width: 80%;
+  height: 2rem;
+  outline: none;
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
+  border-radius: 9999px;
+  border: none;
+  background-color: gray;
+}
+
+.form__btn:hover {
+  background-color: red;
+  color: white;
+}
+
+.main__form__forgot-password {
+  margin-top: 1.5rem;
+  margin-left: 1rem;
+}
+
+.main__form__sign-up {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.main__form__sign-up--btn {
+  width: 80%;
+  height: 2rem;
+  outline: none;
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
+  border-radius: 9999px;
+  border: none;
+  background-color: gray;
+}
+.form__input {
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+}
