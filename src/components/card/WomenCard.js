@@ -1,31 +1,46 @@
-import React from "react";
-import data from "../../data";
-import { Link } from "react-router-dom";
-import Rating from "../rating/Rating";
+import React, { useEffect, useState } from "react";
+import Loading from "../loading/Loading";
+import MessageBox from "../loading/MessageBox";
+import AllProducts from "./AllProducts";
 
 export default function WomenCard() {
+  const [products, setProducts] = useState([]);
+  const [error, setError] = useState(false);
+  const [loading, setLoading] = useState(false);
+  useEffect(() => {
+    const fetchData = () => {
+      try {
+        setLoading(true)
+        fetch("http://localhost:4000/product")
+          .then((response) => response.json())
+          .then((result) => {
+            setLoading(false)
+            setProducts(result.products);
+          });
+      } catch (error) {
+        setError(error.message);
+        setLoading(false)
+      }
+    };
+    fetchData();
+  }, []);
+
   return (
     <>
-      {data.products.map((product) => {
-        if (product.sex === "female") {
-          return (
-            <div key={product.id} className="card_container">
-              <div className="card_image--container">
-                <Link to={`/product/${product.id}`}>
-                <img className="card_image" src={product.image} alt="" />
-                </Link>
-               
-              </div>
-              <div className="card_details--container">
-                <span className="product_name"> {product.name}</span>
-                <Rating rating={product.rating} />
-                <h4 className="product_price">${product.price}</h4>
-              </div>
-            </div>
-          );
+    {loading? <Loading />
+    :
+    error? <MessageBox />
+    :<>
+    {products.map(product =>  {
+        if(product.sex === "female"){
+        return<AllProducts product={product} />
         }
-        return null;
+        return null
       })}
+    </>
+    }
+      
+      
     </>
   );
 }

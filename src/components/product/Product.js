@@ -1,18 +1,39 @@
-import React from "react";
-import data from "../../data";
+import React, { useEffect, useState } from "react";
 import { useParams } from "react-router";
 import "./Product.css";
 import ShopHeader from "../card/shopheader";
 import Rating from "../rating/Rating";
 
-export default function Product() {
+export default function Product(props) {
   const { id } = useParams();
+
+  const [products, setProducts] = useState([]);
+  const [error, setError] = useState(false);
+  const [loading, setLoading] = useState(false);
+  useEffect(() => {
+    const fetchData = () => {
+      try {
+        setLoading(true)
+        fetch("http://localhost:4000/product")
+          .then((response) => response.json())
+          .then((result) => {
+            setLoading(false)
+            setProducts(result.products);
+          });
+      } catch (error) {
+        setError(error.message);
+        setLoading(false)
+      }
+    };
+    fetchData();
+  }, []);
+
 
   return (
     <>
-      {data.products
-        .filter((item) => parseInt(item.id) === parseInt(id))
-        .map((item, index) => (
+      {products
+        .filter((item) => item._id === id )
+        .map((item, index) =>(
           <>
             <ShopHeader title={item.category} />
             <div className="product_screen--container" key={index}>
@@ -61,7 +82,8 @@ export default function Product() {
               </div>
             </div>
           </>
-        ))}
+        ))
+        }
     </>
   );
 }

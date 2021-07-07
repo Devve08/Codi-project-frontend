@@ -44,6 +44,11 @@ function App() {
               <Product />
               <Footer />
             </Route>
+            <Route path="/collections-men">
+            <Header />
+              
+              <Footer />
+            </Route>
           </Switch>
         </div>
       </>
