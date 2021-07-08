@@ -2,7 +2,7 @@ import React from "react";
 import SignIn from "../components/sign-in/SignIn";
 import Register from "../components/register/Register";
 import { BrowserRouter as Router, Route, Switch } from "react-router-dom";
-import Test from "../test";
+// import Test from "../test";
 
 function Signin() {
   return (

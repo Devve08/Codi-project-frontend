@@ -6,36 +6,69 @@ import Axios from "axios";
 function Register() {
   const history = useHistory();
 
-  const [form, setFormInfo] = useState({
-    usernameReg: "",
-    passwordReg: "",
-    nameReg: "",
-    emailReg: "",
-    addressReg: "",
-    phoneReg: "",
-  });
-  // const [passwordReg, setPasswordReg] = useState();
+  // const [form, setFormInfo] = useState({
+  //   usernameReg: "",
+  //   passwordReg: "",
+  //   nameReg: "",
+  //   emailReg: "",
+  //   addressReg: "",
+  //   phoneReg: "",
+  // });
 
-  const update = (e) => {
-    setFormInfo({
-      ...form,
-      [e.target.value]: e.target.value,
-    });
+  const [usernameReg, setUsernameReg] = useState("");
+  const [passwordReg, setPasswordReg] = useState("");
+  const [nameReg, setNameReg] = useState("");
+  const [emailReg, setEmailReg] = useState("");
+  const [addressReg, setAddressReg] = useState("");
+  const [phoneReg, setPhoneReg] = useState("");
+
+  const [errorMessage, setErrorMessage] = useState(null);
+
+  const [test, setTest] = useState(null);
+
+  const register = (e) => {
+    Axios.post("http://localhost:4000/user/add", {
+      name: nameReg,
+      username: usernameReg,
+      password: passwordReg,
+      email: emailReg,
+      address: addressReg,
+      phone: phoneReg,
+    })
+      .then((response) => {
+        console.log(response);
+        setTest(response);
+      })
+      .catch((e) => {
+        setErrorMessage(e.message);
+      });
+    e.preventDefault();
   };
 
-  const register = () => {
-    Axios.post("http://localhost:4000/add", {
-      username: form.usernameReg,
-      password: form.passwordReg,
-      name: form.nameReg,
-      email: form.emailReg,
-      address: form.addressReg,
-      phone: form.phoneReg,
-    }).then((response) => {
-      console.log(response);
-    });
-    console.log(form.usernameReg);
-  };
+  // const update = (e) => {
+  //   setFormInfo({
+  //     ...form,
+  //     [e.target.value]: e.target.value,
+  //   });
+  // };
+
+  // const register = (e) => {
+  //   Axios.post("http://localhost:4000/user/add", {
+  //     username: form.usernameReg,
+  //     password: form.passwordReg,
+  //     name: form.nameReg,
+  //     email: form.emailReg,
+  //     address: form.addressReg,
+  //     phone: form.phoneReg,
+  //   })
+  //     .then((response) => {
+  //       console.log(response);
+  //     })
+  //     .catch((e) => {
+  //       setErrorMessage(e.message);
+  //     });
+  //   e.preventDefault();
+  // };
 
   return (
     <>
@@ -49,6 +82,8 @@ function Register() {
         <form action="" className="form__sign-up">
           <div>
             <h1>Sign-up</h1>
+            {test && <h2>{test.data.message}</h2>}
+            {usernameReg && <h2>{usernameReg}</h2>}
           </div>
           <div className="form__full-name form__input">
             <label for="full-name">Full name</label>
@@ -57,17 +92,17 @@ function Register() {
               name="nameReg"
               id="full-name"
               // value={form.nameReg}
-              onChange={update}
+              onChange={(e) => setNameReg(e.target.value)}
             />
           </div>
           <div className="form__username form__input">
             <label for="username">Username</label>
             <input
               type="text"
-              // value={form.usernameReg}
+              // value={}
               name="usernameReg"
               id="username"
-              onChange={update}
+              onChange={(e) => setUsernameReg(e.target.value)}
             />
           </div>
           <div className="form__email form__input">
@@ -77,7 +112,7 @@ function Register() {
               name="emailReg"
               id="email"
               // value={form.emailReg}
-              onChange={update}
+              onChange={(e) => setEmailReg(e.target.value)}
             />
           </div>
           {/* <div className="form_age form__input">
@@ -104,7 +139,7 @@ function Register() {
               name="addressReg"
               id="address"
               // value={form.addressReg}
-              onChange={update}
+              onChange={(e) => setAddressReg(e.target.value)}
             />
           </div>
           <div className="form__phone form__input">
@@ -114,7 +149,7 @@ function Register() {
               name="phoneReg"
               id="phone"
               // value={form.phoneReg}
-              onChange={update}
+              onChange={(e) => setPhoneReg(e.target.value)}
             />
           </div>
           <div className="form__password form__input">
@@ -128,10 +163,11 @@ function Register() {
               name="password__confirm"
               id="password__confirm"
               // value={form.passwordReg}
-              onChange={update}
+              onChange={(e) => setPasswordReg(e.target.value)}
             />
           </div>
           <button onClick={register}>submit</button>
+          {errorMessage && <h3>{errorMessage}</h3>}
         </form>
       </div>
     </>
