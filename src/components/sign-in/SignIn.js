@@ -2,18 +2,38 @@ import React, { useState } from "react";
 import "./SignIn.css";
 import { Link } from "react-router-dom";
 import { useHistory } from "react-router-dom";
+import Axios from "axios";
+// import { response } from "express";
 
 function SignIn() {
   const history = useHistory();
 
-  const [usernameReg, setUsernameReg] = useState("");
-  const [passwordReg, setPasswordReg] = useState("");
+  const [usernameLog, setUsernameLog] = useState("");
+  const [passwordLog, setPasswordLog] = useState("");
+  const [errorMessage, setErrorMessage] = useState(null);
+
+  const login = (e) => {
+    Axios.post("http://localhost:4000/user/login", {
+      username: usernameLog,
+      password: passwordLog,
+    })
+      .then((res) => {
+        console.log(res);
+      })
+      .catch((e) => {
+        setErrorMessage(e.message);
+      });
+    e.preventDefault();
+  };
 
   return (
     <>
       <div className="main__form__sign-in">
-        <div class="main__form__sign-in__exit" onClick={() => history.goBack()}>
-          <i class="fas fa-times"></i>
+        <div
+          className="main__form__sign-in__exit"
+          onClick={() => history.goBack()}
+        >
+          <i className="fas fa-times"></i>
         </div>
         <form action="" className="form__sign-in">
           <div>
@@ -25,7 +45,7 @@ function SignIn() {
               type="text"
               name="username"
               id="username"
-              onChange={(e) => setUsernameReg(e.target.value)}
+              onChange={(e) => setUsernameLog(e.target.value)}
             />
           </div>
           <div className="form__password">
@@ -34,13 +54,16 @@ function SignIn() {
               type="password"
               name="password__sign-in"
               id="password__sign-in"
-              onChange={(e) => setPasswordReg(e.target.value)}
+              onChange={(e) => setPasswordLog(e.target.value)}
             />
           </div>
-          <button className="form__btn">Sign-in</button>
+          {errorMessage && <h3 className="error">{errorMessage}</h3>}
+          <button className="form__btn" onClick={login}>
+            Sign-in
+          </button>
         </form>
         <div className="main__form__forgot-password">
-          <a href="#">Forgot your password?</a>
+          {/* <a href="#">Forgot your password?</a> */}
         </div>
         <div className="main__form__sign-up">
           <h1 className="main__form__sign-up--text">Sign-up now for free!!</h1>

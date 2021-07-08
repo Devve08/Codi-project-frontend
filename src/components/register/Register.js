@@ -1,17 +1,50 @@
-import React from "react";
+import React, { useState } from "react";
 import { useHistory } from "react-router-dom";
 import "./Register.css";
+import Axios from "axios";
 
 function Register() {
   const history = useHistory();
+
+  const [form, setFormInfo] = useState({
+    usernameReg: "",
+    passwordReg: "",
+    nameReg: "",
+    emailReg: "",
+    addressReg: "",
+    phoneReg: "",
+  });
+  // const [passwordReg, setPasswordReg] = useState();
+
+  const update = (e) => {
+    setFormInfo({
+      ...form,
+      [e.target.value]: e.target.value,
+    });
+  };
+
+  const register = () => {
+    Axios.post("http://localhost:4000/add", {
+      username: form.usernameReg,
+      password: form.passwordReg,
+      name: form.nameReg,
+      email: form.emailReg,
+      address: form.addressReg,
+      phone: form.phoneReg,
+    }).then((response) => {
+      console.log(response);
+    });
+    console.log(form.usernameReg);
+  };
+
   return (
     <>
       <div className="main__form__sign-up">
         <div
-          class="main__form__sign-up__go-back"
+          className="main__form__sign-up__go-back"
           onClick={() => history.goBack()}
         >
-          <i class="fas fa-arrow-left"></i>
+          <i className="fas fa-arrow-left"></i>
         </div>
         <form action="" className="form__sign-up">
           <div>
@@ -19,20 +52,38 @@ function Register() {
           </div>
           <div className="form__full-name form__input">
             <label for="full-name">Full name</label>
-            <input type="text" name="full-name" id="full-name" />
+            <input
+              type="text"
+              name="nameReg"
+              id="full-name"
+              // value={form.nameReg}
+              onChange={update}
+            />
           </div>
           <div className="form__username form__input">
             <label for="username">Username</label>
-            <input type="text" name="username" id="username" />
+            <input
+              type="text"
+              // value={form.usernameReg}
+              name="usernameReg"
+              id="username"
+              onChange={update}
+            />
           </div>
           <div className="form__email form__input">
             <label for="email">Email</label>
-            <input type="text" name="email" id="email" />
+            <input
+              type="text"
+              name="emailReg"
+              id="email"
+              // value={form.emailReg}
+              onChange={update}
+            />
           </div>
-          <div className="form_age form__input">
+          {/* <div className="form_age form__input">
             <label for="age">Age</label>
-            <input type="date" name="age" id="age" />
-          </div>
+            <input type="date" name="age" id="age" value={form.age} onChange={update} />
+          </div> */}
           {/* <div className="form__gender">
             <h2>Gender</h2>
             <div className="form__gender__radios">
@@ -47,12 +98,24 @@ function Register() {
             </div>
           </div> */}
           <div className="form__address form__input">
-            <label for="address">Password</label>
-            <input type="text" name="address" id="address" />
+            <label for="address">address</label>
+            <input
+              type="text"
+              name="addressReg"
+              id="address"
+              // value={form.addressReg}
+              onChange={update}
+            />
           </div>
           <div className="form__phone form__input">
-            <label for="phone">Password</label>
-            <input type="tel" name="phone" id="phone" />
+            <label for="phone">Phone</label>
+            <input
+              type="tel"
+              name="phoneReg"
+              id="phone"
+              // value={form.phoneReg}
+              onChange={update}
+            />
           </div>
           <div className="form__password form__input">
             <label for="password__new">Password</label>
@@ -64,8 +127,11 @@ function Register() {
               type="password"
               name="password__confirm"
               id="password__confirm"
+              // value={form.passwordReg}
+              onChange={update}
             />
           </div>
+          <button onClick={register}>submit</button>
         </form>
       </div>
     </>
