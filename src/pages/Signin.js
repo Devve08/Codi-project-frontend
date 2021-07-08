@@ -8,10 +8,10 @@ function Signin() {
     <Router>
       <div class="main__form">
         <Switch>
-          <Route path="/">
+          <Route path="/login">
             <SignIn />
           </Route>
-          <Route path="/register">
+          <Route path="/Register">
             <Register />
           </Route>
         </Switch>

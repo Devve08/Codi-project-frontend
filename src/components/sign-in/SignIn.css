@@ -11,9 +11,19 @@
   box-shadow: 0px 0px 0px 2000px rgba(0, 0, 0, 0.6);
 }
 
-/* .main__form__sign-in {
-  display: none;
-} */
+.main__form__sign-in {
+  position: relative;
+}
+
+.main__form__sign-in__exit {
+  position: absolute;
+  top: 10px;
+  left: 10px;
+}
+
+.main__form__sign-in__exit > i {
+  font-size: 20px;
+}
 
 .form__sign-in {
   display: flex;

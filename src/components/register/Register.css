@@ -1,3 +1,17 @@
+.main__form__sign-up {
+  position: relative;
+}
+
+.main__form__sign-up__go-back {
+  position: absolute;
+  top: 10px;
+  left: 10px;
+}
+
+.main__form__sign-up__go-back > i {
+  font-size: 20px;
+}
+
 .form__sign-up {
   display: flex;
   flex-direction: column;

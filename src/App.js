@@ -46,9 +46,8 @@ function App() {
               <Footer />
             </Route>
             <Route path="/login">
-              <Header />
+              <Homepage />
               <Signin />
-              <Footer />
             </Route>
           </Switch>
         </div>

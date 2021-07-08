@@ -1,10 +1,18 @@
 import React from "react";
+import { useHistory } from "react-router-dom";
 import "./Register.css";
 
 function Register() {
+  const history = useHistory();
   return (
     <>
       <div className="main__form__sign-up">
+        <div
+          class="main__form__sign-up__go-back"
+          onClick={() => history.goBack()}
+        >
+          <i class="fas fa-arrow-left"></i>
+        </div>
         <form action="" className="form__sign-up">
           <div>
             <h1>Sign-up</h1>
