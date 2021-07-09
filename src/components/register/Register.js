@@ -1,20 +1,8 @@
 import React, { useState } from "react";
-import { useHistory } from "react-router-dom";
 import "./Register.css";
 import Axios from "axios";
 
-function Register() {
-  const history = useHistory();
-
-  // const [form, setFormInfo] = useState({
-  //   usernameReg: "",
-  //   passwordReg: "",
-  //   nameReg: "",
-  //   emailReg: "",
-  //   addressReg: "",
-  //   phoneReg: "",
-  // });
-
+function Register(props) {
   const [usernameReg, setUsernameReg] = useState("");
   const [passwordReg, setPasswordReg] = useState("");
   const [nameReg, setNameReg] = useState("");
@@ -22,18 +10,27 @@ function Register() {
   const [addressReg, setAddressReg] = useState("");
   const [phoneReg, setPhoneReg] = useState("");
 
+  const [form, setForm] = useState({
+    name: "",
+    username: "",
+    password: "",
+    email: "",
+    address: "",
+    phone: "",
+  });
+
   const [errorMessage, setErrorMessage] = useState(null);
 
   const [test, setTest] = useState(null);
 
   const register = (e) => {
     Axios.post("http://localhost:4000/user/add", {
-      name: nameReg,
-      username: usernameReg,
-      password: passwordReg,
-      email: emailReg,
-      address: addressReg,
-      phone: phoneReg,
+      name: form.nameReg,
+      username: form.usernameReg,
+      password: form.passwordReg,
+      email: form.emailReg,
+      address: form.addressReg,
+      phone: form.phoneReg,
     })
       .then((response) => {
         console.log(response);
@@ -44,38 +41,12 @@ function Register() {
       });
     e.preventDefault();
   };
-
-  // const update = (e) => {
-  //   setFormInfo({
-  //     ...form,
-  //     [e.target.value]: e.target.value,
-  //   });
-  // };
-
-  // const register = (e) => {
-  //   Axios.post("http://localhost:4000/user/add", {
-  //     username: form.usernameReg,
-  //     password: form.passwordReg,
-  //     name: form.nameReg,
-  //     email: form.emailReg,
-  //     address: form.addressReg,
-  //     phone: form.phoneReg,
-  //   })
-  //     .then((response) => {
-  //       console.log(response);
-  //     })
-  //     .catch((e) => {
-  //       setErrorMessage(e.message);
-  //     });
-  //   e.preventDefault();
-  // };
-
-  return (
+  return props.signUpstatus ? (
     <>
       <div className="main__form__sign-up">
         <div
           className="main__form__sign-up__go-back"
-          onClick={() => history.goBack()}
+          onClick={() => props.handlerTrigger()}
         >
           <i className="fas fa-arrow-left"></i>
         </div>
@@ -171,6 +142,8 @@ function Register() {
         </form>
       </div>
     </>
+  ) : (
+    ""
   );
 }
 

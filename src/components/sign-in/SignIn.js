@@ -1,13 +1,9 @@
 import React, { useState } from "react";
 import "./SignIn.css";
 import { Link } from "react-router-dom";
-import { useHistory } from "react-router-dom";
 import Axios from "axios";
-// import { response } from "express";
 
-function SignIn() {
-  const history = useHistory();
-
+function SignIn(props) {
   const [usernameLog, setUsernameLog] = useState("");
   const [passwordLog, setPasswordLog] = useState("");
   const [errorMessage, setErrorMessage] = useState(null);
@@ -31,7 +27,7 @@ function SignIn() {
       <div className="main__form__sign-in">
         <div
           className="main__form__sign-in__exit"
-          onClick={() => history.goBack()}
+          onClick={() => props.buttonTrigger(false)}
         >
           <i className="fas fa-times"></i>
         </div>
@@ -67,9 +63,14 @@ function SignIn() {
         </div>
         <div className="main__form__sign-up">
           <h1 className="main__form__sign-up--text">Sign-up now for free!!</h1>
-          <Link className="main__form__sign-up--btn" to="/Register">
-            <button className="main__form__sign-up--btn">Sign-up</button>
-          </Link>
+          {/* <Link className="main__form__sign-up--btn" to="/Register"> */}
+          <button
+            className="main__form__sign-up--btn"
+            onClick={() => props.handlerTrigger()}
+          >
+            Sign-up
+          </button>
+          {/* </Link> */}
         </div>
       </div>
     </>

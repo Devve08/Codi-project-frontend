@@ -1,23 +1,33 @@
-import React from "react";
+import React, { useState } from "react";
 import SignIn from "../components/sign-in/SignIn";
 import Register from "../components/register/Register";
-import { BrowserRouter as Router, Route, Switch } from "react-router-dom";
-// import Test from "../test";
 
-function Signin() {
-  return (
-    <Router>
-      <div class="main__form">
-        <Switch>
-          <Route path="/login">
-            <SignIn />
-          </Route>
-          <Route path="/Register">
-            <Register />
-          </Route>
-        </Switch>
-      </div>
-    </Router>
+function Signin(props) {
+  const [signInTrigger, setSignInTrigger] = useState(true);
+  const [signUpTrigger, setSignUpTrigger] = useState(false);
+
+  const triggerHandler = () => {
+    setSignInTrigger(!signInTrigger);
+    setSignUpTrigger(!signUpTrigger);
+  };
+
+  return props.trigger ? (
+    <div className="main__form ">
+      {signInTrigger && (
+        <SignIn
+          buttonTrigger={() => props.setTrigger()}
+          handlerTrigger={triggerHandler}
+        />
+      )}
+      {signUpTrigger && (
+        <Register
+          signUpstatus={signUpTrigger}
+          handlerTrigger={triggerHandler}
+        />
+      )}
+    </div>
+  ) : (
+    ""
   );
 }
 

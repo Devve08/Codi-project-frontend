@@ -1,8 +1,22 @@
-import React from "react";
+import React, { useState } from "react";
 import "./Header.css";
 import { Link } from "react-router-dom";
+import Signin from "../../pages/Signin";
 
 function Header() {
+  // const loginToggle = () => {
+  //   const userForm = document.querySelector(".main__form");
+  //   if (userForm.classList.contains("display__none")) {
+  //     userForm.classList.add("display__block");
+  //     userForm.classList.remove("display__none");
+  //   } else {
+  //     userForm.classList.add("display__none");
+  //     userForm.classList.remove("display__block");
+  //   }
+  // };
+
+  const [test, setTest] = useState(false);
+
   return (
     <div className="header">
       <div className="header-container">
@@ -25,11 +39,16 @@ function Header() {
           </h1>
         </div>
         <div className="header-container__cart">
-          <Link to="/login">
-            <button className="header-container__cart--btn-login">Login</button>
-          </Link>
+          {/* <Link to="/login"> */}
+          <button
+            className="header-container__cart--btn-login"
+            onClick={() => setTest(true)}
+          >
+            Login
+          </button>
+          {/* </Link> */}
           <button className="header-container__cart--btn-cart">
-            Cart <i class="far fa-shopping-cart"></i>
+            Cart <i className="far fa-shopping-cart"></i>
           </button>
         </div>
       </div>
@@ -37,36 +56,37 @@ function Header() {
         <ul className="header__navbar--ul">
           <li>
             <Link className="link" to="/">
-              <i class="far fa-home"></i>
+              <i className="far fa-home"></i>
               Home
             </Link>
           </li>
           <li>
             <Link className="link" to="/shopmen">
-              <i class="far fa-male"></i>
+              <i className="far fa-male"></i>
               Shop Men
             </Link>
           </li>
           <li>
             <Link className="link" to="/shopwomen">
-              <i class="far fa-female"></i>
+              <i className="far fa-female"></i>
               Shop Women
             </Link>
           </li>
           <li>
             <Link className="link" to="/sale">
-              <i class="far fa-tags"></i>
+              <i className="far fa-tags"></i>
               Sale
             </Link>
           </li>
           <li>
             <Link className="link" to="/contactus">
-              <i class="far fa-file-signature"></i>
+              <i className="far fa-file-signature"></i>
               Contact us
             </Link>
           </li>
         </ul>
       </div>
+      <Signin trigger={test} setTrigger={setTest} />
     </div>
   );
 }
