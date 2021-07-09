@@ -40,10 +40,14 @@ function App() {
               <Footer />
             </Route>
             <Route path="/product/:id">
-            <Header />
+              <Header />
               <Product />
               <Footer />
             </Route>
+            {/* <Route path="/login">
+              <Homepage />
+              <Signin />
+            </Route> */}
           </Switch>
         </div>
       </>
