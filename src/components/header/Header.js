@@ -1,6 +1,7 @@
-import React from "react";
+import React, { useState } from "react";
 import "./Header.css";
 import { Link } from "react-router-dom";
+import Signin from "../../pages/Signin";
 
 function Header(props) {
   return (
@@ -25,12 +26,16 @@ function Header(props) {
           </h1>
         </div>
         <div className="header-container__cart">
-          <button className="header-container__cart--btn-login">Login</button>
+          {/* <Link to="/login"> */}
+          <button
+            className="header-container__cart--btn-login"
+            onClick={() => setTest(true)}
+          >
+            Login
+          </button>
+          {/* </Link> */}
           <button className="header-container__cart--btn-cart">
-            <Link className="link" to="/cart">
-            Cart <i className="far fa-shopping-cart"></i> {props.cart}
-            </Link>
-            
+            Cart <i className="far fa-shopping-cart"></i>
           </button>
         </div>
       </div>
@@ -68,6 +73,7 @@ function Header(props) {
           </li>
         </ul>
       </div>
+      <Signin trigger={test} setTrigger={setTest} />
     </div>
   );
 }
