@@ -8,9 +8,13 @@
     "@testing-library/user-event": "^12.8.3",
     "axios": "^0.21.1",
 <<<<<<< HEAD
+<<<<<<< HEAD
     "proxy": "^1.0.2",
 =======
 >>>>>>> 820ba672cfeabac90aed0ca05f2fe9e2e7b3d1d3
+=======
+
+>>>>>>> 99f82b6d1ac9fcdc5073f85eafb5552bff880853
     "react": "^17.0.2",
     "react-dom": "^17.0.2",
     "react-icons": "^4.2.0",
