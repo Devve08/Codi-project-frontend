@@ -2,7 +2,7 @@ import React from "react";
 import "./Header.css";
 import { Link } from "react-router-dom";
 
-function Header() {
+function Header(props) {
   return (
     <div className="header">
       <div className="header-container">
@@ -28,7 +28,7 @@ function Header() {
           <button className="header-container__cart--btn-login">Login</button>
           <button className="header-container__cart--btn-cart">
             <Link className="link" to="/cart">
-            Cart <i className="far fa-shopping-cart"></i>
+            Cart <i className="far fa-shopping-cart"></i> {props.cart}
             </Link>
             
           </button>

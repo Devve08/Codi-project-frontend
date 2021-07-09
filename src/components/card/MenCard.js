@@ -3,28 +3,32 @@ import "../card/Card.css";
 import AllProducts from "./AllProducts";
 import MessageBox from "../loading/MessageBox";
 import Loading from "../loading/Loading";
+import axios from "axios";
 
 export default function MenCard() {
   const [products, setProducts] = useState([]);
   const [error, setError] = useState(false);
   const [loading, setLoading] = useState(false);
+  const fetchData = () => {
+    setLoading(true)
+    axios
+    .get("http://localhost:4000/product")
+    .then((res) => {
+      setError("")
+      setProducts(res.data)
+      setLoading(false)
+    })
+    .catch((error) => {
+      setProducts("");
+      setError(error.message);
+      setLoading(false)
+    })
+  }
+  
   useEffect(() => {
-    const fetchData = () => {
-      try {
-        setLoading(true);
-        fetch("http://localhost:4000/product")
-          .then((response) => response.json())
-          .then((result) => {
-            setLoading(false);
-            setProducts(result.products);
-          });
-      } catch (err) {
-        setError(err.message);
-        setLoading(false);
-      }
-    };
     fetchData();
-  }, []);
+  },[])
+  
 
   return (
     

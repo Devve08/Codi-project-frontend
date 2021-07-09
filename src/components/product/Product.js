@@ -5,6 +5,7 @@ import ShopHeader from "../card/shopheader";
 import Rating from "../rating/Rating";
 import Loading from "../loading/Loading";
 import MessageBox from "../loading/MessageBox";
+import axios from "axios";
 
 export default function Product(props) {
   const { id } = useParams();
@@ -13,33 +14,31 @@ export default function Product(props) {
   const [error, setError] = useState(false);
   const [loading, setLoading] = useState(false);
   const [quantity, setQuantity] = useState(null);
-  const [cart, setCart]= useState([])
 
-  useEffect(() => {
-    const fetchData = () => {
-      try {
-        setLoading(true);
-        fetch("http://localhost:4000/product")
-          .then((response) => response.json())
-          .then((result) => {
-            setLoading(false);
-            setProducts(result.products);
-          });
-      } catch (error) {
-        setError(error.message);
-        setLoading(false);
-      }
-    };
-    fetchData();
-  }, []);
-
-  const addToCart =(product)=> {
-      setCart([...cart, product])
-      console.log(cart)
+  const fetchData = () => {
+    setLoading(true)
+    axios
+    .get("http://localhost:4000/product")
+    .then((res) => {
+      console.log(res)
+      setError("")
+      setProducts(res.data)
+      setLoading(false)
+    })
+    .catch((error) => {
+      setProducts("");
+      setError(error.message);
+      setLoading(false)
+    })
   }
+  
+  useEffect(() => {
+    fetchData();
+  },[])
 
   return (
     <>
+     
       {loading ? (
         <Loading />
       ) : error ? (
@@ -94,15 +93,22 @@ export default function Product(props) {
                                 value={quantity}
                                 onChange={(e) => setQuantity(e.target.value)}
                               >
-                                {
-                                  [...Array(item.stock).keys()].map(product => (
-                                    <option key={product+1} value={product+1}>{product + 1}</option>
-                                  ))
-                                }
+                                {[...Array(item.stock).keys()].map(
+                                  (product) => (
+                                    <option
+                                      key={product + 1}
+                                      value={product + 1}
+                                    >
+                                      {product + 1}
+                                    </option>
+                                  )
+                                )}
                               </select>
                             </div>
                             <div>
-                              <button onClick={addToCart} className="add_to_cart_btn">
+                              <button
+                                className="add_to_cart_btn"
+                              >
                                 Add to <i className="far fa-shopping-cart"></i>
                               </button>
                             </div>

@@ -1,9 +1,12 @@
-import React from 'react'
+import React, { useContext } from "react";
+import { ProductContext } from "../contexts/ProductContext";
 
 export default function Cart() {
-    return (
-        <div>
-            Cart
-        </div>
-    )
+  const [products, setProducts] = useContext(ProductContext);
+  console.log(products);
+  return (
+    <div>
+      {products.map((item) => <div>{item.name}</div>)}
+    </div>
+  );
 }
