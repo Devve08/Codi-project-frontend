@@ -10,27 +10,18 @@ function Register(props) {
   const [addressReg, setAddressReg] = useState("");
   const [phoneReg, setPhoneReg] = useState("");
 
-  const [form, setForm] = useState({
-    name: "",
-    username: "",
-    password: "",
-    email: "",
-    address: "",
-    phone: "",
-  });
-
   const [errorMessage, setErrorMessage] = useState(null);
 
   const [test, setTest] = useState(null);
 
   const register = (e) => {
     Axios.post("http://localhost:4000/user/add", {
-      name: form.nameReg,
-      username: form.usernameReg,
-      password: form.passwordReg,
-      email: form.emailReg,
-      address: form.addressReg,
-      phone: form.phoneReg,
+      name: nameReg,
+      username: usernameReg,
+      password: passwordReg,
+      email: emailReg,
+      address: addressReg,
+      phone: phoneReg,
     })
       .then((response) => {
         console.log(response);
