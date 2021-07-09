@@ -4,17 +4,6 @@ import { Link } from "react-router-dom";
 import Signin from "../../pages/Signin";
 
 function Header() {
-  // const loginToggle = () => {
-  //   const userForm = document.querySelector(".main__form");
-  //   if (userForm.classList.contains("display__none")) {
-  //     userForm.classList.add("display__block");
-  //     userForm.classList.remove("display__none");
-  //   } else {
-  //     userForm.classList.add("display__none");
-  //     userForm.classList.remove("display__block");
-  //   }
-  // };
-
   const [test, setTest] = useState(false);
 
   return (
