@@ -3,9 +3,9 @@ import "./Header.css";
 import { Link } from "react-router-dom";
 import Signin from "../../pages/Signin";
 
+
 function Header() {
   const [test, setTest] = useState(false);
-
   return (
     <div className="header">
       <div className="header-container">
@@ -37,7 +37,12 @@ function Header() {
           </button>
           {/* </Link> */}
           <button className="header-container__cart--btn-cart">
-            Cart <i className="far fa-shopping-cart"></i>
+
+            <Link className="link" to="/cart">
+            Cart <i className="far fa-shopping-cart"></i> {props.cart}
+            </Link>
+            
+
           </button>
         </div>
       </div>

@@ -13,12 +13,10 @@ function Slider() {
   const prevImage = () => {
     setImage(image === 0 ? length - 1 : image - 1);
   };
-
-  console.log(image);
   return (
     <>
       {/* Image slider section */}
-      <div class="main__image-slider">
+      <div className="main__image-slider">
         <FaArrowAltCircleLeft className="left-arrow" onClick={prevImage} />
         <FaArrowAltCircleRight className="right-arrow" onClick={nextImage} />
         {imagesData.map((item, index) => {
