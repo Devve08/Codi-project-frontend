@@ -9,6 +9,8 @@ import Footer from "./components/footer/Footer";
 import Contact from "./pages/Contact";
 import Sale from "./pages/Sale";
 import Product from "./components/product/Product";
+import Cart from "./pages/Cart";
+import { ProductProvider } from "./contexts/ProductContext";
 
 function App() {
   return (
@@ -40,9 +42,16 @@ function App() {
               <Footer />
             </Route>
             <Route path="/product/:id">
-            <Header />
+              <Header />
               <Product />
               <Footer />
+            </Route>
+            <Route path="/cart">
+              <ProductProvider>
+                <Header />
+                <Cart  />
+                <Footer />
+              </ProductProvider>
             </Route>
           </Switch>
         </div>

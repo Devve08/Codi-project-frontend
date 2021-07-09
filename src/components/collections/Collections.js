@@ -8,6 +8,7 @@ import CollectionTwo from "./CollectionTwo";
 import CollectionThree from "./CollectionThree";
 import Access from '../../images/acce-outfit.jpg';
 import adidas from '../../images/adidas-outfit.jpg'
+import { Link } from "react-router-dom";
 
 
 export default function Collections() {
@@ -18,7 +19,9 @@ export default function Collections() {
         <CollectionOne image={hmc} />
         <CollectionTwo image={Access} />
         <CollectionThree shoes={adidas} />
+        <Link className="collection_four--container" to="/allproducts">
         <CollectionFour Four={jack} />
+        </Link>
       </div>
   );
 }

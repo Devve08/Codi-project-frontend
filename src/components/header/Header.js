@@ -2,7 +2,7 @@ import React from "react";
 import "./Header.css";
 import { Link } from "react-router-dom";
 
-function Header() {
+function Header(props) {
   return (
     <div className="header">
       <div className="header-container">
@@ -27,7 +27,10 @@ function Header() {
         <div className="header-container__cart">
           <button className="header-container__cart--btn-login">Login</button>
           <button className="header-container__cart--btn-cart">
-            Cart <i class="far fa-shopping-cart"></i>
+            <Link className="link" to="/cart">
+            Cart <i className="far fa-shopping-cart"></i> {props.cart}
+            </Link>
+            
           </button>
         </div>
       </div>
@@ -35,31 +38,31 @@ function Header() {
         <ul className="header__navbar--ul">
           <li>
             <Link className="link" to="/">
-              <i class="far fa-home"></i>
+              <i className="far fa-home"></i>
               Home
             </Link>
           </li>
           <li>
             <Link className="link" to="/shopmen">
-              <i class="far fa-male"></i>
+              <i className="far fa-male"></i>
               Shop Men
             </Link>
           </li>
           <li>
             <Link className="link" to="/shopwomen">
-              <i class="far fa-female"></i>
+              <i className="far fa-female"></i>
               Shop Women
             </Link>
           </li>
           <li>
             <Link className="link" to="/sale">
-              <i class="far fa-tags"></i>
+              <i className="far fa-tags"></i>
               Sale
             </Link>
           </li>
           <li>
             <Link className="link" to="/contactus">
-              <i class="far fa-file-signature"></i>
+              <i className="far fa-file-signature"></i>
               Contact us
             </Link>
           </li>

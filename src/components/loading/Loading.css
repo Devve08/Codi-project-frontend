@@ -1,0 +1,10 @@
+.error_div{
+    color: rgb(206, 35, 35);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-size: 1.5rem;
+    height: 50%;
+    width: 100%;
+    margin-left: 100px;
+}

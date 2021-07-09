@@ -9,7 +9,7 @@ function Homepage() {
   return (
     <>
     <Header />
-      <main class="main">
+      <main className="main">
         <Slider /> <br/>
         <Collections />
       </main>
