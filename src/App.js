@@ -46,20 +46,10 @@ function App() {
               <Product />
               <Footer />
             </Route>
-<<<<<<< HEAD
-            <Route path="/cart">
-              <ProductProvider>
-                <Header />
-                <Cart  />
-                <Footer />
-              </ProductProvider>
-            </Route>
-=======
             {/* <Route path="/login">
               <Homepage />
               <Signin />
             </Route> */}
->>>>>>> 820ba672cfeabac90aed0ca05f2fe9e2e7b3d1d3
           </Switch>
         </div>
       </>
