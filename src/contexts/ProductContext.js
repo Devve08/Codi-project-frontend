@@ -11,19 +11,18 @@ export const ProductProvider = (props) => {
 
   const fetchData = () => {
     axios
-    .get("http://localhost:4000/product")
-    .then((res) => {
-      setProducts(res.data)
-      // setError(false)
-    })
-    .catch((error) => {
-      setError({message: "error 404"});
-    })
-  }
-  
+      .get("http://localhost:4000/product")
+      .then((res) => {
+        setProducts(res.data);
+      })
+      .catch((error) => {
+        setError({ message: "error 404" });
+      });
+  };
+
   useEffect(() => {
     fetchData();
-  },[])
+  }, []);
 
   return (
     <>
