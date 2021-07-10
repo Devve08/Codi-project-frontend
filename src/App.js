@@ -11,6 +11,7 @@ import Sale from "./pages/Sale";
 import Product from "./components/product/Product";
 import Cart from "./pages/Cart";
 import { ProductProvider } from "./contexts/ProductContext";
+import ShopHeader from "./components/card/shopheader";
 
 function App() {
   return (
@@ -62,6 +63,7 @@ function App() {
             <Route path="/cart">
               <ProductProvider>
                 <Header />
+                <ShopHeader title="Shopping cart" />
                 <Cart  />
                 <Footer />
               </ProductProvider>
