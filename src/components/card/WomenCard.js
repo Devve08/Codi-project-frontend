@@ -14,7 +14,6 @@ export default function WomenCard() {
     axios
     .get("http://localhost:4000/product")
     .then((res) => {
-      console.log(res)
       setError("")
       setProducts(res.data)
       setLoading(false)

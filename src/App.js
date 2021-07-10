@@ -18,33 +18,46 @@ function App() {
       <>
         <div className="wrapper" id="wrapper">
           <Switch>
+            
             <Route exact path="/">
+            <ProductProvider>
               <Homepage />
+              </ProductProvider>
             </Route>
             <Route path="/shopwomen">
+            <ProductProvider>
               <Header />
               <ShopWomen />
               <Footer />
+            </ProductProvider>
             </Route>
             <Route path="/shopmen">
+            <ProductProvider>
               <Header />
               <ShopMen />
               <Footer />
+            </ProductProvider>
             </Route>
             <Route path="/contactus">
+            <ProductProvider>
               <Header />
               <Contact />
               <Footer />
+            </ProductProvider>
             </Route>
             <Route path="/sale">
+            <ProductProvider>
               <Header />
               <Sale />
               <Footer />
+            </ProductProvider>
             </Route>
             <Route path="/product/:id">
+            <ProductProvider>
               <Header />
               <Product />
               <Footer />
+              </ProductProvider>
             </Route>
             <Route path="/cart">
               <ProductProvider>

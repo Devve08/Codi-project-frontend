@@ -8,6 +8,7 @@ export const ProductContext = createContext();
 export const ProductProvider = (props) => {
   const [products, setProducts] = useState([]);
   const [error, setError] = useState(null);
+  const [cart, setCart]=useState([])
 
   const fetchData = () => {
     axios
@@ -19,7 +20,8 @@ export const ProductProvider = (props) => {
         setError({ message: error.message });
       });
   };
-
+  
+ 
   useEffect(() => {
     fetchData();
   }, []);
@@ -29,8 +31,7 @@ export const ProductProvider = (props) => {
       {error ? (
         <MessageBox error={error.message} />
       ) : (
-        <ProductContext.Provider value={[products, setProducts]}>
-          {console.log("entered")}
+        <ProductContext.Provider value={{value1:[products, setProducts], value2: [cart, setCart]}}>
           {props.children}
         </ProductContext.Provider>
       )}

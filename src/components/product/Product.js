@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import React, { useEffect, useState} from "react";
 import { useParams } from "react-router";
 import "./Product.css";
 import ShopHeader from "../card/shopheader";
@@ -6,10 +6,13 @@ import Rating from "../rating/Rating";
 import Loading from "../loading/Loading";
 import MessageBox from "../loading/MessageBox";
 import axios from "axios";
+import { ProductContext } from "../../contexts/ProductContext";
+import { Link } from "react-router-dom";
 
 export default function Product(props) {
   const { id } = useParams();
-
+  const { value2 } = React.useContext(ProductContext);
+  const [cart, setCart] = value2;
   const [products, setProducts] = useState([]);
   const [error, setError] = useState(false);
   const [loading, setLoading] = useState(false);
@@ -20,7 +23,6 @@ export default function Product(props) {
     axios
     .get("http://localhost:4000/product")
     .then((res) => {
-      console.log(res)
       setError("")
       setProducts(res.data)
       setLoading(false)
@@ -36,6 +38,10 @@ export default function Product(props) {
     fetchData();
   },[])
 
+  const  addToCart = (product) => {
+    setCart([...cart, product])
+  }
+  console.log(cart)
   return (
     <>
      
@@ -50,12 +56,13 @@ export default function Product(props) {
               .filter((item) => item._id === id)
               .map((item, index) => (
                 <>
-                  <ShopHeader key={index} title={item.category} />
+                  <ShopHeader title={item.category} />
                   <div className="product_screen--container">
                     <div className="product_screen--image">
                       <img src={item.image} alt="" />
                     </div>
                     <div className="product_screen--details">
+                    
                       <ul className="screen--details">
                         <li>{item.name}</li>
                         <li>
@@ -107,6 +114,7 @@ export default function Product(props) {
                             </div>
                             <div>
                               <button
+                                onClick={()=>addToCart(item)}
                                 className="add_to_cart_btn"
                               >
                                 Add to <i className="far fa-shopping-cart"></i>

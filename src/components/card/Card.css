@@ -129,3 +129,10 @@
   font-weight: 400;
   color: #ff3b18;
 }
+
+.go_to_cart{
+  padding: 5px;
+  background-color: transparent;
+  color: #000;
+  border: 1px solid #ccc;
+}
