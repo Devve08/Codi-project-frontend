@@ -16,7 +16,7 @@ export const ProductProvider = (props) => {
         setProducts(res.data);
       })
       .catch((error) => {
-        setError({ message: "error 404" });
+        setError({ message: error.message });
       });
   };
 
