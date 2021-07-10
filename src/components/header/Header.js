@@ -3,7 +3,6 @@ import "./Header.css";
 import { Link } from "react-router-dom";
 import Signin from "../../pages/Signin";
 
-
 function Header() {
   const [test, setTest] = useState(false);
   return (
@@ -37,12 +36,9 @@ function Header() {
           </button>
           {/* </Link> */}
           <button className="header-container__cart--btn-cart">
-
             <Link className="link" to="/cart">
-            Cart <i className="far fa-shopping-cart"></i> {props.cart}
+              Cart <i className="far fa-shopping-cart"></i> {props.cart}
             </Link>
-            
-
           </button>
         </div>
       </div>
