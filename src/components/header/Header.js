@@ -1,17 +1,22 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import "./Header.css";
 import { Link } from "react-router-dom";
 import Signin from "../../pages/Signin";
 
-function Header() {
-  const [test, setTest] = useState(false);
+function Header(props) {
+  const [loginPage, setLoginPage] = useState(false);
+
+  const [logged, setLogged] = useState("Login");
+
+  useEffect(() => {
+    console.log("rendered");
+    console.log(logged);
+    // console.log(loginPage);
+  }, [logged]);
   return (
     <div className="header">
       <div className="header-container">
         <div className="header-container__search">
-          {/* <div>
-              <Icon icon="search" size={20} />
-            </div> */}
           <div className="input_div">
             <input
               type="search"
@@ -27,14 +32,12 @@ function Header() {
           </h1>
         </div>
         <div className="header-container__cart">
-          {/* <Link to="/login"> */}
           <button
             className="header-container__cart--btn-login"
-            onClick={() => setTest(true)}
+            onClick={() => setLoginPage(true)}
           >
-            Login
+            {logged}
           </button>
-          {/* </Link> */}
           <button className="header-container__cart--btn-cart">
             <Link className="link" to="/cart">
               Cart <i className="far fa-shopping-cart"></i> {props.cart}
@@ -76,7 +79,11 @@ function Header() {
           </li>
         </ul>
       </div>
-      <Signin trigger={test} setTrigger={setTest} />
+      <Signin
+        trigger={loginPage}
+        setTrigger={setLoginPage}
+        isItLogged={setLogged}
+      />
     </div>
   );
 }

@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useContext, useState } from "react";
 import "./SignIn.css";
 import { Link } from "react-router-dom";
 import Axios from "axios";
@@ -9,17 +9,22 @@ function SignIn(props) {
   const [errorMessage, setErrorMessage] = useState(null);
 
   const login = (e) => {
+    e.preventDefault();
     Axios.post("http://localhost:4000/user/login", {
       username: usernameLog,
       password: passwordLog,
     })
       .then((res) => {
         console.log(res);
+        setErrorMessage(null);
+        props.signInIsItLogged(res.data[0].username);
+        props.buttonTrigger(false);
       })
+
       .catch((e) => {
-        setErrorMessage(e.message);
+        console.log(e.message);
+        setErrorMessage("username or password are wrong");
       });
-    e.preventDefault();
   };
 
   return (
@@ -43,6 +48,7 @@ function SignIn(props) {
               id="username"
               onChange={(e) => setUsernameLog(e.target.value)}
             />
+            {errorMessage && <p className="signIn__error">{errorMessage}</p>}
           </div>
           <div className="form__password">
             <label for="password__sign-in">Password</label>
@@ -52,25 +58,25 @@ function SignIn(props) {
               id="password__sign-in"
               onChange={(e) => setPasswordLog(e.target.value)}
             />
+            {errorMessage && <p className="signIn__error">{errorMessage}</p>}
           </div>
-          {errorMessage && <h3 className="error">{errorMessage}</h3>}
           <button className="form__btn" onClick={login}>
             Sign-in
           </button>
         </form>
-        <div className="main__form__forgot-password">
-          {/* <a href="#">Forgot your password?</a> */}
-        </div>
+        <Link>
+          <div className="main__form__forgot-password">
+            <p>Forgot your password?</p>
+          </div>
+        </Link>
         <div className="main__form__sign-up">
           <h1 className="main__form__sign-up--text">Sign-up now for free!!</h1>
-          {/* <Link className="main__form__sign-up--btn" to="/Register"> */}
           <button
             className="main__form__sign-up--btn"
             onClick={() => props.handlerTrigger()}
           >
             Sign-up
           </button>
-          {/* </Link> */}
         </div>
       </div>
     </>

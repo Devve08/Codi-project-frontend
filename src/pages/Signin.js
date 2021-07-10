@@ -17,6 +17,7 @@ function Signin(props) {
         <SignIn
           buttonTrigger={() => props.setTrigger()}
           handlerTrigger={triggerHandler}
+          signInIsItLogged={(e) => props.isItLogged(e)}
         />
       )}
       {signUpTrigger && (
