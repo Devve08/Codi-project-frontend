@@ -1,41 +1,12 @@
 import React from "react";
 import "./Contact.css";
-import Marquee from "react-fast-marquee";
+
 
 export default function Contact() {
   // Javascript codes here
 
-  var today = new Date();
-
   return (
-    <div class="container">
-      {/* Contact Us */}
-      <div class="item1">
-        {/* First Marquee */}
-        <Marquee direction="right" id="marq1" speed="20">
-          Welcome to Brands Wear, We'd Love to hear from you
-        </Marquee>
-        {/* Second Marquee */}
-        <Marquee direction="right" speed="50" id="marq2">
-          Aramoun main road, Al-Houssam Building
-        </Marquee>
-
-        {/* Third Marquee */}
-        <Marquee direction="right" speed="50" id="marq3">
-          Telephone: 05811715 | Mobile: 71195396.
-        </Marquee>
-
-        <Marquee behavior="scroll" speed="20" direction="right">
-          <i>
-            <font color="blue">
-              {"Current Local Time:  " + today}
-              <strong>
-                <span id="time"></span>
-              </strong>
-            </font>
-          </i>
-        </Marquee>
-      </div>
+      <>
       <div class="item2">
         <h2> Email Us: </h2>
         <form>
@@ -71,6 +42,7 @@ export default function Contact() {
           {" "}
         </iframe>
       </div>
-    </div>
+    
+    </>
   );
 }
