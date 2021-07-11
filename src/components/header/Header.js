@@ -8,11 +8,11 @@ function Header(props) {
 
   const [logged, setLogged] = useState("Login");
 
-  useEffect(() => {
-    console.log("rendered");
-    console.log(logged);
-    // console.log(loginPage);
-  }, [logged]);
+  // useEffect(() => {
+  //   console.log("rendered");
+  //   console.log(logged);
+  //   // console.log(loginPage);
+  // }, [logged]);
   return (
     <div className="header">
       <div className="header-container">
