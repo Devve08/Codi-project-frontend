@@ -4,12 +4,12 @@
 
 .main__form__sign-up__go-back {
   position: absolute;
-  top: 10px;
-  left: 10px;
+  top: 0px;
+  left: 20px;
 }
 
 .main__form__sign-up__go-back > i {
-  font-size: 20px;
+  font-size: 25px;
 }
 
 .form__sign-up {

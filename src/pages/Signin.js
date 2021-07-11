@@ -24,6 +24,7 @@ function Signin(props) {
         <Register
           signUpstatus={signUpTrigger}
           handlerTrigger={triggerHandler}
+          signInIsItLogged={(e) => props.isItLogged(e)}
         />
       )}
     </div>

@@ -4,7 +4,7 @@ import Axios from "axios";
 
 function Register(props) {
   const [doc, setDoc] = useState(null);
-
+  const [errorMessage, setErrorMessage] = useState(false);
   const [form, setForm] = useState({
     usernameReg: "",
     passwordReg: "",
@@ -13,8 +13,9 @@ function Register(props) {
     addressReg: "",
     phoneReg: "",
   });
-  const [errorMessage, setErrorMessage] = useState(null);
+
   const register = (e) => {
+    e.preventDefault();
     Axios.post("http://localhost:4000/user/add", {
       name: form.nameReg,
       username: form.usernameReg,
@@ -23,15 +24,26 @@ function Register(props) {
       address: form.addressReg,
       phone: form.phoneReg,
     })
-      .then((response) => {
-        console.log(response);
-        setDoc(response);
+      .then((res) => {
+        console.log(res);
+        setDoc(res);
+        // props.signInIsItLogged(res.data.data[0]);
+        console.log(res.data.data[0].username);
+        setErrorMessage(false);
       })
       .catch((e) => {
+        console.log(form);
         setErrorMessage(e.message);
       });
-    e.preventDefault();
   };
+
+  const insertForm = (e) => {
+    setForm({
+      ...form,
+      [e.target.name]: e.target.value,
+    });
+  };
+
   return props.signUpstatus ? (
     <>
       <div className="main__form__sign-up">
@@ -44,7 +56,7 @@ function Register(props) {
         <form action="" className="form__sign-up">
           <div>
             <h1>Sign-up</h1>
-            {doc && <h2>{doc.data.message}</h2>}
+            {/* {doc && <h2>{doc.data.message}</h2>} */}
             {form.usernameReg && <h2>{form.usernameReg}</h2>}
           </div>
           <div className="form__full-name form__input">
@@ -54,7 +66,8 @@ function Register(props) {
               name="nameReg"
               id="full-name"
               // value={form.nameReg}
-              onChange={(e) => setForm({ nameReg: e.target.value })}
+              // onChange={(e) => setForm({ ...form, nameReg: e.target.value })}
+              onChange={(e) => insertForm(e)}
             />
           </div>
           <div className="form__username form__input">
@@ -64,7 +77,10 @@ function Register(props) {
               // value={}
               name="usernameReg"
               id="username"
-              onChange={(e) => setForm({ usernameReg: e.target.value })}
+              // onChange={(e) =>
+              //   setForm({ ...form, usernameReg: e.target.value })
+              // }
+              onChange={(e) => insertForm(e)}
             />
           </div>
           <div className="form__email form__input">
@@ -74,7 +90,8 @@ function Register(props) {
               name="emailReg"
               id="email"
               // value={form.emailReg}
-              onChange={(e) => setForm({ emailReg: e.target.value })}
+              // onChange={(e) => setForm({ ...form, emailReg: e.target.value })}
+              onChange={(e) => insertForm(e)}
             />
           </div>
           {/* <div className="form_age form__input">
@@ -101,7 +118,8 @@ function Register(props) {
               name="addressReg"
               id="address"
               // value={form.addressReg}
-              onChange={(e) => setForm({ addressReg: e.target.value })}
+              // onChange={(e) => setForm({ ...form, addressReg: e.target.value })}
+              onChange={(e) => insertForm(e)}
             />
           </div>
           <div className="form__phone form__input">
@@ -111,7 +129,8 @@ function Register(props) {
               name="phoneReg"
               id="phone"
               // value={form.phoneReg}
-              onChange={(e) => setForm({ phoneReg: e.target.value })}
+              // onChange={(e) => setForm({ ...form, phoneReg: e.target.value })}
+              onChange={(e) => insertForm(e)}
             />
           </div>
           <div className="form__password form__input">
@@ -122,10 +141,13 @@ function Register(props) {
             <label for="password__confirm">Confirm your password</label>
             <input
               type="password"
-              name="password__confirm"
+              name="passwordReg"
               id="password__confirm"
               // value={form.passwordReg}
-              onChange={(e) => setForm({ passwordReg: e.target.value })}
+              // onChange={(e) =>
+              //   setForm({ ...form, passwordReg: e.target.value })
+              // }
+              onChange={(e) => insertForm(e)}
             />
           </div>
           <button onClick={register}>submit</button>

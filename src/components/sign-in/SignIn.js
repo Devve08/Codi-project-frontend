@@ -24,6 +24,7 @@ function SignIn(props) {
       .catch((e) => {
         console.log(e.message);
         setErrorMessage("username or password are wrong");
+        props.signInIsItLogged("Login");
       });
   };
 
