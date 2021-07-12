@@ -1,47 +1,28 @@
-import React, { useEffect, useState} from "react";
+import React, { useState} from "react";
 import { useParams } from "react-router";
 import "./Product.css";
 import ShopHeader from "../card/shopheader";
 import Rating from "../rating/Rating";
 import Loading from "../loading/Loading";
 import MessageBox from "../loading/MessageBox";
-import axios from "axios";
 import { ProductContext } from "../../contexts/ProductContext";
-import { Link } from "react-router-dom";
 
 export default function Product(props) {
   const { id } = useParams();
-  const { value2 } = React.useContext(ProductContext);
+  const { value1, value2, value3 } = React.useContext(ProductContext);
   const [cart, setCart] = value2;
-  const [products, setProducts] = useState([]);
-  const [error, setError] = useState(false);
-  const [loading, setLoading] = useState(false);
+  const [products] = value1;
+  const [error] = useState(false);
+  const [loading] = value3
   const [quantity, setQuantity] = useState(null);
-
-  const fetchData = () => {
-    setLoading(true)
-    axios
-    .get("http://localhost:4000/product")
-    .then((res) => {
-      setError("")
-      setProducts(res.data)
-      setLoading(false)
-    })
-    .catch((error) => {
-      setProducts("");
-      setError(error.message);
-      setLoading(false)
-    })
-  }
-  
-  useEffect(() => {
-    fetchData();
-  },[])
 
   const  addToCart = (product) => {
     setCart([...cart, product])
+
+    if(cart.includes(product)){
+      setCart([...cart])
+    }
   }
-  console.log(cart)
   return (
     <>
      

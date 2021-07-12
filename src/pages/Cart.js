@@ -1,31 +1,21 @@
-import React, { useEffect, useState } from "react";
+import React from "react";
 import { ProductContext } from "../contexts/ProductContext";
 import Rating from "../components/rating/Rating";
-import ShopHeader from "../components/card/shopheader";
 import "./Cart.css";
 
 export default function Cart() {
-  const { value1, value2 } = React.useContext(ProductContext);
-  const [products, setProducts] = value1;
+  const { value2 } = React.useContext(ProductContext);
   const [cart, setCart] = value2;
 
   const removeFromCart = (item) => {
-    setCart(cart.filter((product) => product !== item));
+    setCart(cart.filter((product) => product._id !== item._id));
   };
-
-  useEffect(() => {
-    const cartForm = JSON.parse(localStorage.getItem("cart"));
-    setCart(cartForm);
-  }, []);
-
-  useEffect(() => {
-    localStorage.setItem("cart", JSON.stringify(cart));
-  }, []);
   return (
     <div className="cart_section">
       <>
         {cart.map((item, index) => (
           <>
+          {console.log(cart)}
             <div className="cart_screen--container">
               <div className="cart_screen--image">
                 <img src={item.image} alt="" />

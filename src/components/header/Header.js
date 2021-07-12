@@ -18,7 +18,7 @@ function Header(props) {
 
   const [test, setTest] = useState(false);
   const { value2 } = React.useContext(ProductContext);
-  const [cart, setCart] = value2;
+  const [cart] = value2;
   return (
     <div className="header">
       <div className="header-container">

@@ -19,7 +19,6 @@ function App() {
       <>
         <div className="wrapper" id="wrapper">
           <Switch>
-            
             <Route exact path="/">
             <ProductProvider>
               <Homepage />
