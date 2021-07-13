@@ -13,8 +13,7 @@ export default function Product(props) {
   const [cart, setCart] = value2;
   const [products] = value1;
   const [error] = useState(false);
-  const [loading] = value3
-  const [quantity, setQuantity] = useState(null);
+  const [loading] = value3;
 
   const  addToCart = (product) => {
     setCart([...cart, product])
@@ -23,6 +22,11 @@ export default function Product(props) {
       setCart([...cart])
     }
   }
+
+  let formatter = new Intl.NumberFormat('en-US', {
+    style: 'currency',
+    currency: 'USD',
+  })
   return (
     <>
      
@@ -62,7 +66,7 @@ export default function Product(props) {
                         </li>
                         <li>
                           <span>Price :</span>
-                          <span className="price">${item.price}</span>
+                          <span className="price">{formatter.format(item.price)}</span>
                         </li>
                         <li>
                           <div>Status :</div>
@@ -74,25 +78,9 @@ export default function Product(props) {
                             )}
                           </div>
                         </li>
-                        {item.stock > 0 ? (
-                          <li>
-                            <div>
-                              <select
-                                value={quantity}
-                                onChange={(e) => setQuantity(e.target.value)}
-                              >
-                                {[...Array(item.stock).keys()].map(
-                                  (product) => (
-                                    <option
-                                      key={product + 1}
-                                      value={product + 1}
-                                    >
-                                      {product + 1}
-                                    </option>
-                                  )
-                                )}
-                              </select>
-                            </div>
+                        
+                            {item.stock > 0 ? 
+                            <li className ="add_to_cart_li">
                             <div>
                               <button
                                 onClick={()=>addToCart(item)}
@@ -101,8 +89,7 @@ export default function Product(props) {
                                 Add to <i className="far fa-shopping-cart"></i>
                               </button>
                             </div>
-                          </li>
-                        ) : null}
+                          </li> : null}
                       </ul>
                     </div>
                   </div>

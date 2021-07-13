@@ -26,15 +26,23 @@
     list-style: none;
 }
 
+.cart_screen--details{
+    width: 20%;
+}
+
 .cart--details{
+    width: 100%;
     display: flex;
     flex-direction: column;
-    justify-content: space-around;
+    justify-content: space-between;
     height: 100%;
     margin: 0;
 }
 
-
+.price_li{
+    display: flex;
+    justify-content: space-between;
+}
 .cart_price{
     color: #ff3b18;
 }
