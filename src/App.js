@@ -11,6 +11,7 @@ import Sale from "./pages/Sale";
 import Product from "./components/product/Product";
 import Cart from "./pages/Cart";
 import { ProductProvider } from "./contexts/ProductContext";
+import ShopHeader from "./components/card/shopheader";
 
 function App() {
   return (
@@ -19,37 +20,53 @@ function App() {
         <div className="wrapper" id="wrapper">
           <Switch>
             <Route exact path="/">
+            <ProductProvider>
               <Homepage />
+              </ProductProvider>
             </Route>
             <Route path="/shopwomen">
+            <ProductProvider>
               <Header />
               <ShopWomen />
               <Footer />
+            </ProductProvider>
             </Route>
             <Route path="/shopmen">
+            <ProductProvider>
               <Header />
               <ShopMen />
               <Footer />
+            </ProductProvider>
             </Route>
             <Route path="/contactus">
+            <ProductProvider>
               <Header />
               <Contact />
               <Footer />
+            </ProductProvider>
             </Route>
             <Route path="/sale">
+            <ProductProvider>
               <Header />
               <Sale />
               <Footer />
+            </ProductProvider>
             </Route>
             <Route path="/product/:id">
+            <ProductProvider>
               <Header />
               <Product />
               <Footer />
+              </ProductProvider>
             </Route>
-            {/* <Route path="/login">
-              <Homepage />
-              <Signin />
-            </Route> */}
+            <Route path="/cart">
+              <ProductProvider>
+                <Header />
+                <ShopHeader title="Shopping cart" />
+                <Cart  />
+                <Footer />
+              </ProductProvider>
+            </Route>
           </Switch>
         </div>
       </>

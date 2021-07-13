@@ -2,7 +2,7 @@ import React, { useState } from "react";
 import "./Header.css";
 import { Link } from "react-router-dom";
 import Signin from "../../pages/Signin";
-
+import { ProductContext } from "../../contexts/ProductContext";
 
 function Header(props) {
   // const loginToggle = () => {
@@ -17,6 +17,8 @@ function Header(props) {
   // };
 
   const [test, setTest] = useState(false);
+  const { value2 } = React.useContext(ProductContext);
+  const [cart] = value2;
   return (
     <div className="header">
       <div className="header-container">
@@ -46,15 +48,16 @@ function Header(props) {
           >
             Login
           </button>
-          {/* </Link> */}
-          <button className="header-container__cart--btn-cart">
-
-            <Link className="link" to="/cart">
-            Cart <i className="far fa-shopping-cart"></i> {props.cart}
-            </Link>
-            
-
-          </button>
+          <div className="btn_cart_counter">
+            <button className="header-container__cart--btn-cart">
+              <Link className="link" to="/cart">
+                Cart <i className="far fa-shopping-cart"></i>
+              </Link>
+            </button>
+            <div className="span_cart_counter">
+              <span>{cart.length}</span>
+            </div>
+          </div>
         </div>
       </div>
       <div className="header__navbar">
