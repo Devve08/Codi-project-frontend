@@ -1,34 +1,15 @@
-import React, { useEffect, useState } from "react";
+import React, { useState } from "react";
 import "../card/Card.css";
 import AllProducts from "./AllProducts";
 import MessageBox from "../loading/MessageBox";
 import Loading from "../loading/Loading";
-import axios from "axios";
+import { ProductContext } from "../../contexts/ProductContext";
 
 export default function MenCard() {
-  const [products, setProducts] = useState([]);
-  const [error, setError] = useState(false);
-  const [loading, setLoading] = useState(false);
-  const fetchData = () => {
-    setLoading(true)
-    axios
-    .get("http://localhost:4000/product")
-    .then((res) => {
-      setError("")
-      setProducts(res.data)
-      setLoading(false)
-    })
-    .catch((error) => {
-      setProducts("");
-      setError(error.message);
-      setLoading(false)
-    })
-  }
-  
-  useEffect(() => {
-    fetchData();
-  },[])
-  
+  const { value1, value3 } = React.useContext(ProductContext);
+  const [products] = value1
+  const [error] = useState(false);
+  const [loading] = value3;
 
   return (
     
