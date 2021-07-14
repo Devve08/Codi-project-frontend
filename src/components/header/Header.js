@@ -4,7 +4,7 @@ import { Link } from "react-router-dom";
 import Signin from "../../pages/Signin";
 import { ProductContext } from "../../contexts/ProductContext";
 
-function Header(props) {
+function Header() {
   // const loginToggle = () => {
   //   const userForm = document.querySelector(".main__form");
   //   if (userForm.classList.contains("display__none")) {
@@ -18,6 +18,7 @@ function Header(props) {
 
   const [test, setTest] = useState(false);
   const { value2 } = React.useContext(ProductContext);
+  console.log(value2)
   const [cart] = value2;
   return (
     <div className="header">
