@@ -17,43 +17,23 @@ function App() {
     <Router>
       <>
         <div className="wrapper" id="wrapper">
+          <Header />
           <Switch>
-            <Route exact path="/">
-              <Homepage />
-            </Route>
-            <Route path="/shopwomen">
-              <Header />
-              <ShopWomen />
-              <Footer />
-            </Route>
-            <Route path="/shopmen">
-              <Header />
-              <ShopMen />
-              <Footer />
-            </Route>
-            <Route path="/contactus">
-              <Header />
-              <Contact />
-              <Footer />
-            </Route>
-            <Route path="/sale">
-              <Header />
-              <Sale />
-              <Footer />
-            </Route>
-            <Route path="/product/:id">
-              <Header />
-              <Product />
-              <Footer />
-            </Route>
+            <Route exact path="/" component={Homepage} />
+            <Route path="/shopwomen" component={ShopWomen} />
+            <Route path="/shopmen" component={ShopMen} />
+            <Route path="/contactus" component={Contact} />
+            <Route path="/sale" component={Sale} />
+            <Route path="/product/:id" component={Product} />
             <Route path="/cart">
               <ProductProvider>
                 <Header />
-                <Cart  />
+                <Cart />
                 <Footer />
               </ProductProvider>
             </Route>
           </Switch>
+          <Footer />
         </div>
       </>
     </Router>

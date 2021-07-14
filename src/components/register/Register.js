@@ -3,7 +3,6 @@ import "./Register.css";
 import Axios from "axios";
 
 function Register(props) {
-  const [doc, setDoc] = useState(null);
   const [errorMessage, setErrorMessage] = useState(false);
   const [form, setForm] = useState({
     usernameReg: "",
@@ -25,15 +24,15 @@ function Register(props) {
       phone: form.phoneReg,
     })
       .then((res) => {
-        console.log(res);
-        setDoc(res);
-        // props.signInIsItLogged(res.data.data[0]);
+        setErrorMessage("Your " + res.data.error + " already exists");
+        console.log(res.data.error);
+        props.setLogged(res.data.data[0].username);
         console.log(res.data.data[0].username);
-        setErrorMessage(false);
+        props.triggerHandler(false);
+        props.setLoginPage(false);
       })
       .catch((e) => {
-        console.log(form);
-        setErrorMessage(e.message);
+        console.log(e);
       });
   };
 
@@ -49,15 +48,13 @@ function Register(props) {
       <div className="main__form__sign-up">
         <div
           className="main__form__sign-up__go-back"
-          onClick={() => props.handlerTrigger()}
+          onClick={() => props.triggerHandler()}
         >
           <i className="fas fa-arrow-left"></i>
         </div>
         <form action="" className="form__sign-up">
           <div>
             <h1>Sign-up</h1>
-            {/* {doc && <h2>{doc.data.message}</h2>} */}
-            {form.usernameReg && <h2>{form.usernameReg}</h2>}
           </div>
           <div className="form__full-name form__input">
             <label for="full-name">Full name</label>
@@ -65,8 +62,6 @@ function Register(props) {
               type="text"
               name="nameReg"
               id="full-name"
-              // value={form.nameReg}
-              // onChange={(e) => setForm({ ...form, nameReg: e.target.value })}
               onChange={(e) => insertForm(e)}
             />
           </div>
@@ -74,12 +69,8 @@ function Register(props) {
             <label for="username">Username</label>
             <input
               type="text"
-              // value={}
               name="usernameReg"
               id="username"
-              // onChange={(e) =>
-              //   setForm({ ...form, usernameReg: e.target.value })
-              // }
               onChange={(e) => insertForm(e)}
             />
           </div>
@@ -89,8 +80,6 @@ function Register(props) {
               type="text"
               name="emailReg"
               id="email"
-              // value={form.emailReg}
-              // onChange={(e) => setForm({ ...form, emailReg: e.target.value })}
               onChange={(e) => insertForm(e)}
             />
           </div>
@@ -117,8 +106,6 @@ function Register(props) {
               type="text"
               name="addressReg"
               id="address"
-              // value={form.addressReg}
-              // onChange={(e) => setForm({ ...form, addressReg: e.target.value })}
               onChange={(e) => insertForm(e)}
             />
           </div>
@@ -128,8 +115,6 @@ function Register(props) {
               type="tel"
               name="phoneReg"
               id="phone"
-              // value={form.phoneReg}
-              // onChange={(e) => setForm({ ...form, phoneReg: e.target.value })}
               onChange={(e) => insertForm(e)}
             />
           </div>
@@ -143,10 +128,6 @@ function Register(props) {
               type="password"
               name="passwordReg"
               id="password__confirm"
-              // value={form.passwordReg}
-              // onChange={(e) =>
-              //   setForm({ ...form, passwordReg: e.target.value })
-              // }
               onChange={(e) => insertForm(e)}
             />
           </div>

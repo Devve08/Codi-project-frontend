@@ -8,12 +8,10 @@ import Header from "../components/header/Header";
 function Homepage() {
   return (
     <>
-    <Header />
       <main className="main">
-        <Slider /> <br/>
+        <Slider /> <br />
         <Collections />
       </main>
-      <Footer />
     </>
   );
 }
