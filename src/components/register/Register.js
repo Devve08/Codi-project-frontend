@@ -3,49 +3,58 @@ import "./Register.css";
 import Axios from "axios";
 
 function Register(props) {
-  const [usernameReg, setUsernameReg] = useState("");
-  const [passwordReg, setPasswordReg] = useState("");
-  const [nameReg, setNameReg] = useState("");
-  const [emailReg, setEmailReg] = useState("");
-  const [addressReg, setAddressReg] = useState("");
-  const [phoneReg, setPhoneReg] = useState("");
-
-  const [errorMessage, setErrorMessage] = useState(null);
-
-  const [test, setTest] = useState(null);
+  const [errorMessage, setErrorMessage] = useState(false);
+  const [form, setForm] = useState({
+    usernameReg: "",
+    passwordReg: "",
+    nameReg: "",
+    emailReg: "",
+    addressReg: "",
+    phoneReg: "",
+  });
 
   const register = (e) => {
+    e.preventDefault();
     Axios.post("http://localhost:4000/user/add", {
-      name: nameReg,
-      username: usernameReg,
-      password: passwordReg,
-      email: emailReg,
-      address: addressReg,
-      phone: phoneReg,
+      name: form.nameReg,
+      username: form.usernameReg,
+      password: form.passwordReg,
+      email: form.emailReg,
+      address: form.addressReg,
+      phone: form.phoneReg,
     })
-      .then((response) => {
-        console.log(response);
-        setTest(response);
+      .then((res) => {
+        setErrorMessage("Your " + res.data.error + " already exist");
+        console.log(res.data.error);
+        props.setLogged(res.data.data[0].username);
+        console.log(res.data.data[0].username);
+        props.triggerHandler(false);
+        props.setLoginPage(false);
       })
       .catch((e) => {
-        setErrorMessage(e.message);
+        console.log(e);
       });
-    e.preventDefault();
   };
-  return props.signUpstatus ? (
+
+  const insertForm = (e) => {
+    setForm({
+      ...form,
+      [e.target.name]: e.target.value,
+    });
+  };
+
+  return props.signUpTrigger ? (
     <>
       <div className="main__form__sign-up">
         <div
           className="main__form__sign-up__go-back"
-          onClick={() => props.handlerTrigger()}
+          onClick={() => props.triggerHandler()}
         >
           <i className="fas fa-arrow-left"></i>
         </div>
         <form action="" className="form__sign-up">
           <div>
             <h1>Sign-up</h1>
-            {test && <h2>{test.data.message}</h2>}
-            {usernameReg && <h2>{usernameReg}</h2>}
           </div>
           <div className="form__full-name form__input">
             <label for="full-name">Full name</label>
@@ -53,18 +62,16 @@ function Register(props) {
               type="text"
               name="nameReg"
               id="full-name"
-              // value={form.nameReg}
-              onChange={(e) => setNameReg(e.target.value)}
+              onChange={(e) => insertForm(e)}
             />
           </div>
           <div className="form__username form__input">
             <label for="username">Username</label>
             <input
               type="text"
-              // value={}
               name="usernameReg"
               id="username"
-              onChange={(e) => setUsernameReg(e.target.value)}
+              onChange={(e) => insertForm(e)}
             />
           </div>
           <div className="form__email form__input">
@@ -73,8 +80,7 @@ function Register(props) {
               type="text"
               name="emailReg"
               id="email"
-              // value={form.emailReg}
-              onChange={(e) => setEmailReg(e.target.value)}
+              onChange={(e) => insertForm(e)}
             />
           </div>
           {/* <div className="form_age form__input">
@@ -100,8 +106,7 @@ function Register(props) {
               type="text"
               name="addressReg"
               id="address"
-              // value={form.addressReg}
-              onChange={(e) => setAddressReg(e.target.value)}
+              onChange={(e) => insertForm(e)}
             />
           </div>
           <div className="form__phone form__input">
@@ -110,8 +115,7 @@ function Register(props) {
               type="tel"
               name="phoneReg"
               id="phone"
-              // value={form.phoneReg}
-              onChange={(e) => setPhoneReg(e.target.value)}
+              onChange={(e) => insertForm(e)}
             />
           </div>
           <div className="form__password form__input">
@@ -122,14 +126,13 @@ function Register(props) {
             <label for="password__confirm">Confirm your password</label>
             <input
               type="password"
-              name="password__confirm"
+              name="passwordReg"
               id="password__confirm"
-              // value={form.passwordReg}
-              onChange={(e) => setPasswordReg(e.target.value)}
+              onChange={(e) => insertForm(e)}
             />
           </div>
           <button onClick={register}>submit</button>
-          {errorMessage && <h3>{errorMessage}</h3>}
+          {errorMessage && <h3 className="signUp__error">{errorMessage}</h3>}
         </form>
       </div>
     </>
