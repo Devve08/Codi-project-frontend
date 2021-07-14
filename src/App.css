@@ -11,3 +11,9 @@
   bottom: 0;
   z-index: 1;
 }
+
+.main__form input {
+  border-radius: 9999px;
+  border: 1px solid gray;
+  padding: 0.2rem 0.5rem;
+}

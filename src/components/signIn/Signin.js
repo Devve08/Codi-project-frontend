@@ -14,6 +14,8 @@ function Signin(props) {
 
   let domNode = useClickOutside(() => {
     props.setLoginPage(false);
+    setSignInTrigger(true);
+    setSignUpTrigger(false);
   });
 
   return props.loginPage ? (
