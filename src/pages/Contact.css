@@ -1,4 +1,4 @@
-/* #title {
+#title {
   color: #000000;
   text-align: center;
 }
@@ -11,7 +11,7 @@
   display: grid;
   grid-template-areas:
     "header header "
-    " main right";  
+    " main right";
   grid-template-columns: 1fr 1fr;
   grid-auto-rows: auto 6fr;
   grid-gap: 1px;
@@ -44,19 +44,19 @@ textarea {
   padding: 2%;
   width: 40%;
   border: 2px solid green;
-} */
+}
 
 /* forms inputs */
 
-/* input { */
-/* width: 500px;
-    height: 45px;
-        padding: 12px 20px;
-    margin: 8px 0;
-    border: 2px solid red;
-    box-sizing: border-box;
-       border-radius: 4px; */
-/* width: 40%;
+input {
+  width: 500px;
+  height: 45px;
+  padding: 12px 20px;
+  margin: 8px 0;
+  border: 2px solid red;
+  box-sizing: border-box;
+  border-radius: 4px;
+  width: 40%;
   padding: 12px 20px;
   margin: 8px 0;
   box-sizing: border-box;
@@ -66,7 +66,7 @@ textarea {
 
 button {
   background-color: #4caf50; /* Green */
-/* border: none;
+  border: none;
   color: white;
   padding: 16px 32px;
   text-align: center;
@@ -90,16 +90,16 @@ button {
 }
 .titles {
   text-shadow: 2px 2px 5px red;
-} */
+}
 
-/* .marquee1 {
+.marquee1 {
   text-shadow: 2px 2px 5px red;
 }
 
 #marq1 {
   color: green;
-}  */
-/* 
-#marq2 {
+}
+
+/* #marq2 {
   speed: 90;
-} */
+}  */
