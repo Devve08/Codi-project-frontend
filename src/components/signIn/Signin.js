@@ -1,4 +1,5 @@
 import React, { useState } from "react";
+import { useClickOutside } from "../../customHooks/useClickOutside";
 import Login from "../login/Login";
 import Register from "../register/Register";
 
@@ -11,24 +12,30 @@ function Signin(props) {
     setSignUpTrigger(!signUpTrigger);
   };
 
+  let domNode = useClickOutside(() => {
+    props.setLoginPage(false);
+  });
+
   return props.loginPage ? (
-    <div className="main__form ">
-      {signInTrigger && (
-        <Login
-          setLoginPage={() => props.setLoginPage()}
-          triggerHandler={triggerHandler}
-          setLogged={(e) => props.setLogged(e)}
-        />
-      )}
-      {signUpTrigger && (
-        <Register
-          setLoginPage={() => props.setLoginPage()}
-          signUpTrigger={signUpTrigger}
-          triggerHandler={triggerHandler}
-          setLogged={(e) => props.setLogged(e)}
-        />
-      )}
-    </div>
+    <>
+      <div className="main__form" ref={domNode}>
+        {signInTrigger && (
+          <Login
+            setLoginPage={() => props.setLoginPage()}
+            triggerHandler={triggerHandler}
+            setLogged={(e) => props.setLogged(e)}
+          />
+        )}
+        {signUpTrigger && (
+          <Register
+            setLoginPage={() => props.setLoginPage()}
+            signUpTrigger={signUpTrigger}
+            triggerHandler={triggerHandler}
+            setLogged={(e) => props.setLogged(e)}
+          />
+        )}
+      </div>
+    </>
   ) : null;
 }
 
