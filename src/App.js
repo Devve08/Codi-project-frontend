@@ -11,7 +11,7 @@ import Sale from "./pages/Sale";
 import Product from "./components/product/Product";
 import Cart from "./pages/Cart";
 import { ProductProvider } from "./contexts/ProductContext";
-import ShopHeader from "./components/card/shopheader";
+
 
 function App() {
   return (

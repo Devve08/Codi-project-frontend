@@ -1,20 +1,31 @@
 import React, { useState } from "react";
 import "./Header.css";
 import { Link } from "react-router-dom";
-import Signin from "../signIn/Signin";
+import Signin from "../signIn/Signin"
 import { ProductContext } from "../../contexts/ProductContext";
 
 function Header() {
-  const [loginPage, setLoginPage] = useState(false);
+  // const loginToggle = () => {
+  //   const userForm = document.querySelector(".main__form");
+  //   if (userForm.classList.contains("display__none")) {
+  //     userForm.classList.add("display__block");
+  //     userForm.classList.remove("display__none");
+  //   } else {
+  //     userForm.classList.add("display__none");
+  //     userForm.classList.remove("display__block");
+  //   }
+  // };
 
-  const [logged, setLogged] = useState("Login");
-
+  const [test, setTest] = useState(false);
   const { value2 } = React.useContext(ProductContext);
   const [cart] = value2;
   return (
     <div className="header">
       <div className="header-container">
         <div className="header-container__search">
+          {/* <div>
+              <Icon icon="search" size={20} />
+            </div> */}
           <div className="input_div">
             <input
               type="search"
@@ -30,11 +41,12 @@ function Header() {
           </h1>
         </div>
         <div className="header-container__cart">
+          {/* <Link to="/login"> */}
           <button
             className="header-container__cart--btn-login"
-            onClick={() => setLoginPage(true)}
+            onClick={() => setTest(true)}
           >
-            {logged}
+            Login
           </button>
           <div className="btn_cart_counter">
             <button className="header-container__cart--btn-cart">
@@ -82,11 +94,7 @@ function Header() {
           </li>
         </ul>
       </div>
-      <Signin
-        loginPage={loginPage}
-        setLoginPage={setLoginPage}
-        setLogged={setLogged}
-      />
+      <Signin trigger={test} setTrigger={setTest} />
     </div>
   );
 }
