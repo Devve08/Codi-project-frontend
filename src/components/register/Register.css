@@ -23,3 +23,9 @@
   flex-direction: column;
   gap: 0.5rem;
 }
+
+.signUp__error {
+  color: red;
+  margin-block-start: 0;
+  margin-block-end: 0;
+}

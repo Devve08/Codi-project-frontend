@@ -11,21 +11,21 @@ function Signin(props) {
     setSignUpTrigger(!signUpTrigger);
   };
 
-  return props.trigger ? (
+  return props.loginPage ? (
     <div className="main__form ">
       {signInTrigger && (
         <Login
-          setTrigger={() => props.setTrigger()}
+          setLoginPage={() => props.setLoginPage()}
           triggerHandler={triggerHandler}
-          isItLogged={(e) => props.isItLogged(e)}
+          setLogged={(e) => props.setLogged(e)}
         />
       )}
       {signUpTrigger && (
         <Register
-          setTrigger={() => props.setTrigger()}
+          setLoginPage={() => props.setLoginPage()}
           signUpTrigger={signUpTrigger}
           triggerHandler={triggerHandler}
-          isItLogged={(e) => props.isItLogged(e)}
+          setLogged={(e) => props.setLogged(e)}
         />
       )}
     </div>

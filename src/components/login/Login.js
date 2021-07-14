@@ -17,14 +17,14 @@ function Login(props) {
       .then((res) => {
         console.log(res);
         setErrorMessage(null);
-        props.isItLogged(res.data[0].username);
-        props.setTrigger(false);
+        props.setLogged(res.data.doc[0].username);
+        props.setLoginPage(false);
       })
 
       .catch((e) => {
-        console.log(e);
+        console.log(e.message);
         setErrorMessage("username or password are wrong");
-        props.isItLogged("Login");
+        props.setLogged("Login");
       });
   };
 
@@ -33,7 +33,7 @@ function Login(props) {
       <div className="main__form__sign-in">
         <div
           className="main__form__sign-in__exit"
-          onClick={() => props.buttonTrigger(false)}
+          onClick={() => props.setLoginPage(false)}
         >
           <i className="fas fa-times"></i>
         </div>

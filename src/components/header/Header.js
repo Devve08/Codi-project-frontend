@@ -1,7 +1,7 @@
-import React, { useEffect, useState } from "react";
+import React, { useState } from "react";
 import "./Header.css";
 import { Link } from "react-router-dom";
-import Signin from "../../pages/Signin";
+import Signin from "../signIn/Signin";
 
 function Header(props) {
   const [loginPage, setLoginPage] = useState(false);

@@ -24,7 +24,7 @@ function Register(props) {
       phone: form.phoneReg,
     })
       .then((res) => {
-        setErrorMessage("Your " + res.data.error + " already exists");
+        setErrorMessage("Your " + res.data.error + " already exist");
         console.log(res.data.error);
         props.setLogged(res.data.data[0].username);
         console.log(res.data.data[0].username);
@@ -43,7 +43,7 @@ function Register(props) {
     });
   };
 
-  return props.signUpstatus ? (
+  return props.signUpTrigger ? (
     <>
       <div className="main__form__sign-up">
         <div
@@ -132,7 +132,7 @@ function Register(props) {
             />
           </div>
           <button onClick={register}>submit</button>
-          {errorMessage && <h3>{errorMessage}</h3>}
+          {errorMessage && <h3 className="signUp__error">{errorMessage}</h3>}
         </form>
       </div>
     </>
