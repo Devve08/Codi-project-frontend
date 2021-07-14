@@ -18,6 +18,7 @@ function Header() {
 
   const [test, setTest] = useState(false);
   const { value2 } = React.useContext(ProductContext);
+  console.log(value2)
   const [cart] = value2;
   return (
     <div className="header">
