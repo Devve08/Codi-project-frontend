@@ -1,13 +1,4 @@
-#title {
-  color: #000000;
-  text-align: center;
-}
-
-#FollowUS {
-  text-align: center;
-}
-
-.container {
+.container__contactUs {
   display: grid;
   grid-template-areas:
     "header header "
@@ -20,42 +11,42 @@
   grid-template-rows: minmax(100px, auto);
 }
 
-.container > div {
+.container__contactUs > div {
   background-color: rgba(255, 255, 255, 0.8);
   text-align: center;
   padding: 10px;
   font-size: 18px;
 }
 
-.item1 {
+.cont1 {
   grid-area: header;
 }
 
-.item2 {
+.cont2 {
   grid-area: main;
 }
 
-.item3 {
+.cont3 {
   grid-area: right;
 }
 
-textarea {
+/* cont1: first div */
+
+.cont1__header {
+  text-shadow: 0 0 3px #ff0000;
+}
+
+/* cont2: second div */
+.cont2__form__textarea {
   resize: none;
   padding: 2%;
   width: 40%;
   border: 2px solid green;
 }
 
-/* forms inputs */
+/* form inputs */
 
-input {
-  width: 500px;
-  height: 45px;
-  padding: 12px 20px;
-  margin: 8px 0;
-  border: 2px solid red;
-  box-sizing: border-box;
-  border-radius: 4px;
+.cont2__form__inputs {
   width: 40%;
   padding: 12px 20px;
   margin: 8px 0;
@@ -64,7 +55,9 @@ input {
   border-radius: 4px;
 }
 
-button {
+/* form button */
+
+.cont2__form__button {
   background-color: #4caf50; /* Green */
   border: none;
   color: white;
@@ -78,28 +71,13 @@ button {
   cursor: pointer;
 }
 
-.button1 {
+.cont2__form__button {
   background-color: white;
   color: black;
   border: 2px solid #4caf50;
 }
 
-.button1:hover {
+.cont2__form__button:hover {
   background-color: #4caf50;
   color: white;
 }
-.titles {
-  text-shadow: 2px 2px 5px red;
-}
-
-.marquee1 {
-  text-shadow: 2px 2px 5px red;
-}
-
-#marq1 {
-  color: green;
-}
-
-/* #marq2 {
-  speed: 90;
-}  */
