@@ -26,19 +26,18 @@ export const ProductProvider = (props) => {
       });
   };
 
+  // useEffect(() => {
+  //   fetchData();
+  // }, []);
+
   useEffect(() => {
-    fetchData();
+    const saved = localStorage.getItem("cart cart");
+    setCart(JSON.parse(saved));
   }, []);
-  
-  useEffect(() => {
-    const saved = localStorage.getItem("cart cart")
-    setCart(JSON.parse(saved))
-  },[])
 
   useEffect(() => {
-    localStorage.setItem("cart cart", JSON.stringify(cart))
-  }, [cart])
-
+    localStorage.setItem("cart cart", JSON.stringify(cart));
+  }, [cart]);
 
   return (
     <>
@@ -48,7 +47,11 @@ export const ProductProvider = (props) => {
         <MessageBox error={error.message} />
       ) : (
         <ProductContext.Provider
-          value={{ value1: [products, setProducts], value2: [cart, setCart], value3: [loading, setLoading] }}
+          value={{
+            value1: [products, setProducts],
+            value2: [cart, setCart],
+            value3: [loading, setLoading],
+          }}
         >
           {props.children}
         </ProductContext.Provider>
