@@ -22,7 +22,7 @@ function Login(props) {
       })
 
       .catch((e) => {
-        console.log(e.message);
+        console.log(e);
         setErrorMessage("username or password are wrong");
         props.setLogged("Login");
       });
@@ -65,11 +65,13 @@ function Login(props) {
             Sign-in
           </button>
         </form>
-        <Link>
-          <div className="main__form__forgot-password">
-            <p>Forgot your password?</p>
-          </div>
-        </Link>
+        {errorMessage && (
+          <Link>
+            <div className="main__form__forgot-password">
+              <p>Forgot your password?</p>
+            </div>
+          </Link>
+        )}
         <div className="main__form__sign-up">
           <h1 className="main__form__sign-up--text">Sign-up now for free!!</h1>
           <button
