@@ -9,8 +9,8 @@ function Header() {
 
   const [logged, setLogged] = useState("Login");
 
-  // const { value2 } = React.useContext(ProductContext);
-  // const [cart] = value2;
+  const { value2 } = React.useContext(ProductContext);
+  const [cart] = value2;
   return (
     <div className="header">
       <div className="header-container">
@@ -43,7 +43,7 @@ function Header() {
               </Link>
             </button>
             <div className="span_cart_counter">
-              {/* <span>{cart.length}</span> */}
+              <span>{cart.length}</span>
             </div>
           </div>
         </div>

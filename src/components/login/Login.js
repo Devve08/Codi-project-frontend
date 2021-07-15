@@ -19,6 +19,7 @@ function Login(props) {
         setErrorMessage(null);
         props.setLogged(res.data.doc[0].username);
         props.setLoginPage(false);
+        localStorage.setItem("token", res.data.token);
       })
 
       .catch((e) => {
