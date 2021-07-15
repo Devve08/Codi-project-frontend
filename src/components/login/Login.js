@@ -19,14 +19,17 @@ function Login(props) {
         setErrorMessage(null);
         props.setLogged(res.data.doc[0].username);
         props.setLoginPage(false);
-        localStorage.setItem("token", res.data.token);
+        localStorage.setItem({ token: res.data.token, login: true });
       })
 
-      .catch((e) => {
-        console.log(e);
-        setErrorMessage("username or password are wrong");
-        props.setLogged("Login");
-      });
+      .catch(
+        (e) => {
+          console.log(e);
+          setErrorMessage("username or password are wrong");
+          props.setLogged("Login");
+        },
+        { timeout: 2 }
+      );
   };
 
   return (
