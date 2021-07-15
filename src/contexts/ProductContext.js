@@ -35,9 +35,12 @@ export const ProductProvider = (props) => {
     setCart(JSON.parse(saved));
   }, []);
 
+<<<<<<< HEAD
   useEffect(() => {
     localStorage.setItem("cart cart", JSON.stringify(cart));
   }, [cart]);
+=======
+>>>>>>> Dev
 
   return (
     <>

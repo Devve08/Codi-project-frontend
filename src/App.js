@@ -28,7 +28,10 @@ function App() {
             <Route path="/product/:id" component={Product} />
             <Route path="/cart">
               <ProductProvider>
-                <Cart />
+                <Header />
+                <ShopHeader title="Shopping cart" />
+                <Cart  />
+                <Footer />
               </ProductProvider>
             </Route> */}
             <Route exact path="/">

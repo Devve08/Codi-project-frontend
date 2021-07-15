@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import { ProductContext } from "../contexts/ProductContext";
+import { ProductContext, ProductProvider } from "../contexts/ProductContext";
 import Rating from "../components/rating/Rating";
 import "./Cart.css";
 
@@ -18,8 +18,8 @@ export default function Cart() {
   });
   return (
     <div className="cart_section">
-      <>
-        {cart.map((item, index) => (
+      <ProductProvider>
+        {cart && cart.map((item, index) => (
           <>
             {console.log(cart)}
             <div className="cart_screen--container">
@@ -84,7 +84,7 @@ export default function Cart() {
             </div>
           </>
         ))}
-      </>
+      </ ProductProvider>
     </div>
   );
 }
