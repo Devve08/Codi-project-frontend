@@ -26,21 +26,14 @@ export const ProductProvider = (props) => {
       });
   };
 
-  // useEffect(() => {
-  //   fetchData();
-  // }, []);
+  useEffect(() => {
+    fetchData();
+  }, []);
 
   useEffect(() => {
     const saved = localStorage.getItem("cart cart");
     setCart(JSON.parse(saved));
   }, []);
-
-<<<<<<< HEAD
-  useEffect(() => {
-    localStorage.setItem("cart cart", JSON.stringify(cart));
-  }, [cart]);
-=======
->>>>>>> Dev
 
   return (
     <>

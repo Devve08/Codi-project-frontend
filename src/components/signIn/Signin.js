@@ -18,8 +18,15 @@ function Signin(props) {
     setSignUpTrigger(false);
   });
 
+  const signoutPageHandler = () => {
+    props.tokenHandler();
+    props.setLogoutPage(false);
+    props.setLogged("Login");
+  };
+
   return props.loginPage ? (
     <>
+      <div className="main__inset__background"></div>
       <div className="main__form" ref={domNode}>
         {signInTrigger && (
           <Login
@@ -36,6 +43,13 @@ function Signin(props) {
             setLogged={(e) => props.setLogged(e)}
           />
         )}
+      </div>
+    </>
+  ) : props.logoutPage ? (
+    <>
+      <div className="main__inset__background"></div>
+      <div className="main__form" ref={domNode}>
+        <button onClick={signoutPageHandler}>Sign-out</button>
       </div>
     </>
   ) : null;

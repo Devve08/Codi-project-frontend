@@ -19,7 +19,8 @@ function Login(props) {
         setErrorMessage(null);
         props.setLogged(res.data.doc[0].username);
         props.setLoginPage(false);
-        localStorage.setItem({ token: res.data.token, login: true });
+        localStorage.setItem("token", res.data.token);
+        localStorage.setItem("username", res.data.doc[0].username);
       })
 
       .catch(

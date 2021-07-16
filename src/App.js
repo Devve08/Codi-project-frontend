@@ -12,31 +12,57 @@ import Product from "./components/product/Product";
 import Cart from "./pages/Cart";
 import { ProductProvider } from "./contexts/ProductContext";
 import ShopHeader from "./components/card/shopheader";
+import Axios from "axios";
+import { useEffect, useState } from "react";
 
 function App() {
+  const [usernameToken, setUsernameToken] = useState(false);
+
+  useEffect(() => {
+    let localToken = localStorage.getItem("token");
+    Axios.post("http://localhost:4000/user/login", {
+      token: localToken,
+    })
+      .then((res) => {
+        console.log(res);
+        setUsernameToken(res.data.value);
+      })
+      .catch((e) => {
+        setUsernameToken(false);
+        console.log(e);
+      });
+  }, []);
+
+  const tokenHandler = () => {
+    localStorage.setItem("token", "");
+    setUsernameToken(false);
+  };
+
   return (
     <Router>
       <>
         <div className="wrapper" id="wrapper">
-          {/* <Header /> */}
-          <Switch>
-            {/* <Route exact path="/" component={Homepage} />
-            <Route path="/shopwomen" component={ShopWomen} />
-            <Route path="/shopmen" component={ShopMen} />
-            <Route path="/contactus" component={Contact} />
-            <Route path="/sale" component={Sale} />
-            <Route path="/product/:id" component={Product} />
-            <Route path="/cart">
-              <ProductProvider>
-                <Header />
+          <ProductProvider>
+            <Header usernameToken={usernameToken} tokenHandler={tokenHandler} />
+            <Switch>
+              <Route exact path="/" component={Homepage} />
+              <Route path="/shopwomen" component={ShopWomen} />
+              <Route path="/shopmen" component={ShopMen} />
+              <Route path="/contactus" component={Contact} />
+              <Route path="/sale" component={Sale} />
+              <Route path="/product/:id" component={Product} />
+              <Route path="/cart">
                 <ShopHeader title="Shopping cart" />
-                <Cart  />
-                <Footer />
-              </ProductProvider>
-            </Route> */}
-            <Route exact path="/">
+                <Cart />
+              </Route>
+              {/* <Route exact path="/">
               <ProductProvider>
+                <Header
+                  usernameToken={usernameToken}
+                  tokenHandler={tokenHandler}
+                />
                 <Homepage />
+                <Footer />
               </ProductProvider>
             </Route>
             <Route path="/shopwomen">
@@ -81,9 +107,10 @@ function App() {
                 <Cart />
                 <Footer />
               </ProductProvider>
-            </Route>
-          </Switch>
-          {/* <Footer /> */}
+            </Route> */}
+            </Switch>
+            <Footer />
+          </ProductProvider>
         </div>
       </>
     </Router>
