@@ -26,9 +26,9 @@ export const ProductProvider = (props) => {
       });
   };
 
-  useEffect(() => {
-    fetchData();
-  }, []);
+  // useEffect(() => {
+  //   fetchData();
+  // }, []);
 
   useEffect(() => {
     const saved = localStorage.getItem("cart cart");

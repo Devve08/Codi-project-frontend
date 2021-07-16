@@ -136,9 +136,7 @@ function Register(props) {
         </form>
       </div>
     </>
-  ) : (
-    ""
-  );
+  ) : null;
 }
 
 export default Register;
