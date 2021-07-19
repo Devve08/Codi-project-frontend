@@ -30,9 +30,6 @@ export const ProductProvider = (props) => {
     fetchData();
   }, []);
 
-
-
-
   return (
     <>
       {loading ? (

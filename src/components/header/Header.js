@@ -3,14 +3,32 @@ import "./Header.css";
 import { Link } from "react-router-dom";
 import Signin from "../signIn/Signin";
 import { ProductContext } from "../../contexts/ProductContext";
+import { useLocation } from "react-router";
 
-function Header() {
+function Header(props) {
+
+  
   const [loginPage, setLoginPage] = useState(false);
-
+  const [logoutPage, setLogoutPage] = useState(false);
   const [logged, setLogged] = useState("Login");
+
+  const pageHandler = () => {
+    if (props.usernameToken !== false || logged !== "Login") {
+      setLogoutPage(true);
+      setLoginPage(false);
+    } else {
+      setLogoutPage(false);
+      setLoginPage(true);
+    }
+  };
 
   const { value2 } = React.useContext(ProductContext);
   const [cart] = value2;
+  let location = useLocation()
+  console.log(location.pathname)
+  if (location.pathname.match(/admin/)){
+    return null
+  }
   return (
     <div className="header">
       <div className="header-container">
@@ -32,9 +50,9 @@ function Header() {
         <div className="header-container__cart">
           <button
             className="header-container__cart--btn-login"
-            onClick={() => setLoginPage(true)}
+            onClick={() => pageHandler()}
           >
-            {logged}
+            {props.usernameToken ? props.usernameToken : logged}
           </button>
           <div className="btn_cart_counter">
             <button className="header-container__cart--btn-cart">
@@ -86,6 +104,9 @@ function Header() {
         loginPage={loginPage}
         setLoginPage={setLoginPage}
         setLogged={setLogged}
+        logoutPage={logoutPage}
+        tokenHandler={() => props.tokenHandler()}
+        setLogoutPage={setLogoutPage}
       />
     </div>
   );
