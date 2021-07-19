@@ -19,7 +19,7 @@ function App() {
   const [usernameToken, setUsernameToken] = useState(false);
 
   useEffect(() => {
-    let localToken = localStorage.getItem("token");
+    let localToken = localStorage.getItem("token"); // Token Auth
     Axios.post("http://localhost:4000/user/login", {
       token: localToken,
     })
