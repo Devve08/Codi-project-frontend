@@ -7,6 +7,7 @@ function Register(props) {
   const [form, setForm] = useState({
     usernameReg: "",
     passwordReg: "",
+    checkPassword: "",
     nameReg: "",
     emailReg: "",
     addressReg: "",
@@ -15,25 +16,29 @@ function Register(props) {
 
   const register = (e) => {
     e.preventDefault();
-    Axios.post("http://localhost:4000/user/add", {
-      name: form.nameReg,
-      username: form.usernameReg,
-      password: form.passwordReg,
-      email: form.emailReg,
-      address: form.addressReg,
-      phone: form.phoneReg,
-    })
-      .then((res) => {
-        setErrorMessage("Your " + res.data.error + " already exist");
-        console.log(res.data.error);
-        props.setLogged(res.data.data[0].username);
-        console.log(res.data.data[0].username);
-        props.triggerHandler(false);
-        props.setLoginPage(false);
+    if (form.passwordReg === form.checkPassword) {
+      Axios.post("http://localhost:4000/user/add", {
+        name: form.nameReg,
+        username: form.usernameReg,
+        password: form.passwordReg,
+        email: form.emailReg,
+        address: form.addressReg,
+        phone: form.phoneReg,
       })
-      .catch((e) => {
-        console.log(e);
-      });
+        .then((res) => {
+          setErrorMessage("Your " + res.data.error + " already exist");
+          console.log(res.data.error);
+          props.setLogged(res.data.data[0].username);
+          console.log(res.data.data[0].username);
+          props.triggerHandler(false);
+          props.setLoginPage(false);
+        })
+        .catch((e) => {
+          console.log(e);
+        });
+    } else {
+      setErrorMessage("Your passwords doesn't match");
+    }
   };
 
   const insertForm = (e) => {
@@ -83,23 +88,6 @@ function Register(props) {
               onChange={(e) => insertForm(e)}
             />
           </div>
-          {/* <div className="form_age form__input">
-            <label for="age">Age</label>
-            <input type="date" name="age" id="age" value={form.age} onChange={update} />
-          </div> */}
-          {/* <div className="form__gender">
-            <h2>Gender</h2>
-            <div className="form__gender__radios">
-              <div>
-                <input type="radio" name="male" id="male" />
-                <label for="male">Male</label>
-              </div>
-              <div>
-                <input type="radio" name="female" id="female" />
-                <label for="female">Female</label>
-              </div>
-            </div>
-          </div> */}
           <div className="form__address form__input">
             <label for="address">address</label>
             <input
@@ -120,7 +108,12 @@ function Register(props) {
           </div>
           <div className="form__password form__input">
             <label for="password__new">Password</label>
-            <input type="password" name="password__new" id="password__new" />
+            <input
+              type="password"
+              name="checkPassword"
+              id="password__new"
+              onChange={(e) => insertForm(e)}
+            />
           </div>
           <div className="form__password form__input">
             <label for="password__confirm">Confirm your password</label>
@@ -131,7 +124,9 @@ function Register(props) {
               onChange={(e) => insertForm(e)}
             />
           </div>
-          <button onClick={register}>submit</button>
+          <button className="form__btn" onClick={register}>
+            submit
+          </button>
           {errorMessage && <h3 className="signUp__error">{errorMessage}</h3>}
         </form>
       </div>
