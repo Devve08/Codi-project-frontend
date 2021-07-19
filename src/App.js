@@ -12,6 +12,7 @@ import Product from "./components/product/Product";
 import Cart from "./pages/Cart";
 import { ProductProvider } from "./contexts/ProductContext";
 import ShopHeader from "./components/card/shopheader";
+import Admin from "./pages/admin dashboard/Admin";
 
 function App() {
   return (
@@ -81,6 +82,12 @@ function App() {
                 <Cart />
                 <Footer />
               </ProductProvider>
+            </Route>
+            <Route path="/admin">
+              <ProductProvider>
+              <Admin />
+              </ProductProvider>
+              
             </Route>
           </Switch>
           {/* <Footer /> */}
