@@ -1,3 +1,4 @@
+import React from "react";
 import "./App.css";
 import "./normalize.css";
 import Homepage from "./pages/Homepage";
@@ -16,7 +17,7 @@ import Axios from "axios";
 import { useEffect, useState } from "react";
 
 function App() {
-  const [usernameToken, setUsernameToken] = useState(false);
+  const [usernameToken, setUsernameToken] = useState(false); // Token State
 
   useEffect(() => {
     let localToken = localStorage.getItem("token"); // Token Auth
@@ -24,12 +25,13 @@ function App() {
       token: localToken,
     })
       .then((res) => {
-        console.log(res);
-        setUsernameToken(res.data.value);
+        console.log(res.data.Token.value);
+        setUsernameToken(res.data.Token.value);
       })
       .catch((e) => {
         setUsernameToken(false);
-        console.log(e);
+        localStorage.setItem("token", "");
+        console.log({ Token: e });
       });
   }, []);
 

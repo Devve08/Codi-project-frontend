@@ -7,9 +7,9 @@ import Loading from "../components/loading/Loading";
 export const ProductContext = createContext();
 
 export const ProductProvider = (props) => {
-  const [products, setProducts] = useState([]);
+  const [products, setProducts] = useState(null);
   const [error, setError] = useState(null);
-  const [cart, setCart] = useState([]);
+  const [cart, setCart] = useState(null);
   const [loading, setLoading] = useState(false);
 
   const fetchData = () => {
@@ -24,6 +24,7 @@ export const ProductProvider = (props) => {
         setError({ message: error.message });
         setLoading(false);
       });
+    console.log(products);
   };
 
   useEffect(() => {
