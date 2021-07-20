@@ -1,6 +1,7 @@
 import React from "react";
 import axios from "axios";
 import { useEffect, useState } from "react";
+import { Link } from "react-router-dom";
 
 export default function AdminUsers() {
   const [users, setUsers] = useState([]);
@@ -23,23 +24,34 @@ export default function AdminUsers() {
   }, []);
 
   return (
-    <div className="user--page">
+      <>
+      <Link to="/add-user">
+      <button className="add--user"> <i class="fas fa-plus"></i> New User</button>
+      </Link>
+     
+    <table className="user--page">
+        <tr className="table--header">
+            <th>Name</th>
+            <th>Username</th>
+            <th>Email</th>
+            <th>Admin</th>
+            <th>Update</th>
+            <th>Delete</th>
+        </tr>
+
       {users.map((item) => {
         return (
-          <div className="user--container">
-            <ul className="user--list">
-              <li>Email: {item.email} </li>
-              <li>Username: {item.username} </li>
-              <li>Name: {item.name}</li>
-              <li>Admin : {item.isAdmin == true ? "Yes" : "No"}</li>
-            </ul>
-            <div className="admin--user--btn">
-              <button>Delete</button>
-              <button>Edit</button>
-            </div>
-          </div>
+         <tr className="table--data">
+             <td>{item.name}</td>
+             <td>{item.username}</td>
+             <td>{item.email}</td>
+             <td>{item.isAdmin === true ? "Yes" : "No"}</td>
+             <td><i class="fas fa-pen"></i></td>
+             <td><i class="fas fa-trash-alt"></i></td>
+         </tr>
         );
       })}
-    </div>
+    </table>
+    </>
   );
 }
