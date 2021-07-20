@@ -13,6 +13,7 @@ export const ProductProvider = (props) => {
   const [loading, setLoading] = useState(false);
 
   const fetchData = () => {
+    setCart(props.cartInfos);
     setLoading(true);
     axios
       .get("http://localhost:4000/product")
@@ -26,10 +27,9 @@ export const ProductProvider = (props) => {
       });
     console.log(products);
   };
-
   useEffect(() => {
     fetchData();
-  }, []);
+  }, [props.cartInfos]);
 
   return (
     <>
