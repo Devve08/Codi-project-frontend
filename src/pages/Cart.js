@@ -2,6 +2,7 @@ import React, { useState } from "react";
 import { ProductContext, ProductProvider } from "../contexts/ProductContext";
 import Rating from "../components/rating/Rating";
 import "./Cart.css";
+import axios from "axios";
 
 export default function Cart() {
   const { value2 } = React.useContext(ProductContext);
@@ -11,7 +12,18 @@ export default function Cart() {
   const [quantity, setQuantity] = useState([]);
 
   const removeFromCart = (item) => {
-    setCart(cart.filter((product) => product._id !== item._id));
+    console.log(item._id);
+    // setCart(cart.filter((product) => product._id !== item._id));
+    let localToken = localStorage.getItem("token");
+    axios
+      .put("http://localhost:4000/user/cartremove", {
+        token: localToken,
+        product_id: item._id,
+      })
+      .then((res) => {
+        console.log({ putResponse: res });
+      })
+      .catch();
   };
 
   let formatter = new Intl.NumberFormat("en-US", {
@@ -21,7 +33,6 @@ export default function Cart() {
   return (
     <div className="cart_section">
       <ProductProvider>
-        {console.log(cart, products)}
         {cart &&
           cart.map((item) => {
             let test2 = item.product_id;

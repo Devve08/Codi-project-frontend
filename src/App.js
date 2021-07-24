@@ -26,15 +26,15 @@ function App() {
       token: localToken,
     })
       .then((res) => {
-        // console.log(res.data);
+        console.log(res.data);
         setUsernameToken(res.data.Token.value);
-        setCartInfos(res.data.doc);
-        console.log({ cart: res.data.doc });
+        setCartInfos(res.data.doc.cart);
+        console.log(res.data.doc.cart);
       })
       .catch((e) => {
         setUsernameToken(false);
-        // localStorage.setItem("token", "");
-        // console.log({ Token: e });
+        localStorage.setItem("token", "");
+        console.log({ Token: e });
       });
     console.log(cartInfos);
   }, []);

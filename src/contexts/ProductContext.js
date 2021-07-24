@@ -25,12 +25,10 @@ export const ProductProvider = (props) => {
         setError({ message: error.message });
         setLoading(false);
       });
-    console.log(products);
   };
   useEffect(() => {
     fetchData();
   }, [props.cartInfos]);
-
   return (
     <>
       {loading ? (

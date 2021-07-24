@@ -26,12 +26,14 @@ function Register(props) {
         phone: form.phoneReg,
       })
         .then((res) => {
+          console.log(res.data.data[0].username);
           setErrorMessage("Your " + res.data.error + " already exist");
-          console.log(res.data.error);
           props.setLogged(res.data.data[0].username);
           console.log(res.data.data[0].username);
           props.triggerHandler(false);
           props.setLoginPage(false);
+          localStorage.setItem("token", res.data.token);
+          localStorage.setItem("username", res.data.data[0].username);
         })
         .catch((e) => {
           console.log(e);

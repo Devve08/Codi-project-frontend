@@ -15,7 +15,7 @@ function Login(props) {
       password: passwordLog,
     })
       .then((res) => {
-        // console.log(res.data.token);
+        console.log(res.data.token);
         setErrorMessage(null);
         props.setLogged(res.data.doc[0].username);
         props.setLoginPage(false);
