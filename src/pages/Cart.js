@@ -10,18 +10,8 @@ export default function Cart() {
   const { value1 } = React.useContext(ProductContext);
   const [products, setProducts] = value1;
   const [quantity, setQuantity] = useState([]);
-  const [count, setCount] = useState(null);
 
-  console.log(cart);
   const removeFromCart = (item) => {
-    setCart(
-      cart.map((cartItem, index) => {
-        if (cartItem.product_id === item._id) {
-          cart.splice(index, 1);
-        }
-      }),
-      ...cart
-    );
     let localToken = localStorage.getItem("token");
     axios
       .put("http://localhost:4000/user/cartremove", {
@@ -30,24 +20,34 @@ export default function Cart() {
       })
       .then((res) => {
         console.log({ putResponse: res });
+        console.log(cart);
       })
       .catch();
-    setCount(count + 1);
+    setCart(
+      ...cart,
+      cart.map((cartItem, index) => {
+        if (cartItem.product_id === item._id) {
+          cart.splice(index, 1);
+        }
+      })
+    );
   };
   console.log(cart);
-  useEffect(() => {}, [count]);
 
   let formatter = new Intl.NumberFormat("en-US", {
     style: "currency",
     currency: "USD",
   });
+  console.log(cart);
   return (
     <div className="cart_section">
       <ProductProvider>
         {cart &&
           cart.map((item) => {
-            let test2 = item.product_id;
-
+            let test2 = null;
+            if (item.product_id !== undefined) {
+              test2 = item.product_id;
+            }
             return products.map((item, index) => {
               if (test2 === item._id) {
                 return (
