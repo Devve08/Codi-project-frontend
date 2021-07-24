@@ -23,9 +23,29 @@ export default function AdminUsers() {
     fetchData();
   }, []);
 
+ 
+  
+  
+
+  const deleteUser = (id) =>{
+  
+    const endpoint = `http://localhost:4000/user/${id}`;
+
+    fetch(endpoint, {
+      method:"DELETE"
+    })
+    .then(data => console.log(data))
+    .catch(err => {
+     setError({
+       message : err.message
+     })
+    })
+    window.location.reload()
+  }
+
   return (
       <>
-      <Link to="/add-user">
+      <Link to="/admin/add-user">
       <button className="add--user"> <i class="fas fa-plus"></i> New User</button>
       </Link>
      
@@ -45,9 +65,9 @@ export default function AdminUsers() {
              <td>{item.name}</td>
              <td>{item.username}</td>
              <td>{item.email}</td>
-             <td>{item.isAdmin === true ? "Yes" : "No"}</td>
-             <td><i class="fas fa-pen"></i></td>
-             <td><i class="fas fa-trash-alt"></i></td>
+             <td>{item.admin}</td>
+             <td> <Link to={`/admin/update-user/${item._id}`} className="link"><i class="fas fa-pen"></i></Link> </td>
+             <td><Link onClick={() => deleteUser(item._id)} to="/admin/users" className="link"><i class="fas fa-trash-alt"></i></Link></td>
          </tr>
         );
       })}

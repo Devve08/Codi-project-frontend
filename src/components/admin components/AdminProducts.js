@@ -3,6 +3,7 @@ import { useState, useEffect } from "react";
 import axios from "axios";
 import { ProductContext } from "../../contexts/ProductContext";
 import Rating from "../rating/Rating";
+import { Link } from "react-router-dom";
 
 export default function AdminProducts() {
   const { value1 } = React.useContext(ProductContext);
@@ -27,8 +28,12 @@ export default function AdminProducts() {
 
   return (
     <div>
+      <Link to="/admin/add-product">
+      <button className="add--user"> <i class="fas fa-plus"></i> New Product</button>
+      </Link>
       {products.map((item) => {
         return (
+          <>
           <div className="admin--product--view">
             <img src={item.image} alt="" />
             <div>
@@ -56,6 +61,9 @@ export default function AdminProducts() {
           
            
           </div>
+          
+          </>
+       
         );
       })}
     </div>

@@ -25,7 +25,6 @@ function Header(props) {
   const { value2 } = React.useContext(ProductContext);
   const [cart] = value2;
   let location = useLocation()
-  console.log(location.pathname)
   if (location.pathname.match(/admin/)){
     return null
   }
