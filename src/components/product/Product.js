@@ -22,6 +22,7 @@ export default function Product(props) {
     if (cart.includes(product)) {
       setCart([...cart]);
     } else {
+      setCart([...cart, { product_id: product._id }]);
       axios
         .put("http://localhost:4000/user/cart", {
           token: localToken,
