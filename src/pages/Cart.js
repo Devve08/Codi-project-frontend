@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import { ProductContext, ProductProvider } from "../contexts/ProductContext";
 import Rating from "../components/rating/Rating";
 import "./Cart.css";
@@ -12,8 +12,6 @@ export default function Cart() {
   const [quantity, setQuantity] = useState([]);
 
   const removeFromCart = (item) => {
-    console.log(item._id);
-    // setCart(cart.filter((product) => product._id !== item._id));
     let localToken = localStorage.getItem("token");
     axios
       .put("http://localhost:4000/user/cartremove", {
@@ -22,20 +20,34 @@ export default function Cart() {
       })
       .then((res) => {
         console.log({ putResponse: res });
+        console.log(cart);
       })
       .catch();
+    setCart(
+      ...cart,
+      cart.map((cartItem, index) => {
+        if (cartItem.product_id === item._id) {
+          cart.splice(index, 1);
+        }
+      })
+    );
   };
+  console.log(cart);
 
   let formatter = new Intl.NumberFormat("en-US", {
     style: "currency",
     currency: "USD",
   });
+  console.log(cart);
   return (
     <div className="cart_section">
       <ProductProvider>
         {cart &&
           cart.map((item) => {
-            let test2 = item.product_id;
+            let test2 = null;
+            if (item.product_id !== undefined) {
+              test2 = item.product_id;
+            }
             return products.map((item, index) => {
               if (test2 === item._id) {
                 return (
