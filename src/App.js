@@ -1,3 +1,4 @@
+import React from "react";
 import "./App.css";
 import "./normalize.css";
 import Homepage from "./pages/Homepage";
@@ -17,7 +18,8 @@ import { useEffect, useState } from "react";
 import Admin from "./pages/admin dashboard/Admin";
 
 function App() {
-  const [usernameToken, setUsernameToken] = useState(false);
+  const [usernameToken, setUsernameToken] = useState(false); // Token State
+  const [cartInfos, setCartInfos] = useState([]);
 
   useEffect(() => {
     let localToken = localStorage.getItem("token"); // Token Auth
@@ -25,13 +27,17 @@ function App() {
       token: localToken,
     })
       .then((res) => {
-        console.log(res);
-        setUsernameToken(res.data.value);
+        console.log(res.data);
+        setUsernameToken(res.data.Token.value);
+        setCartInfos(res.data.doc.cart);
+        console.log(res.data.doc.cart);
       })
       .catch((e) => {
         setUsernameToken(false);
-        console.log(e);
+        localStorage.setItem("token", "");
+        console.log({ Token: e });
       });
+    console.log(cartInfos);
   }, []);
 
   const tokenHandler = () => {
@@ -43,7 +49,7 @@ function App() {
     <Router>
       <>
         <div className="wrapper" id="wrapper">
-          <ProductProvider>
+          <ProductProvider cartInfos={cartInfos}>
             <Header usernameToken={usernameToken} tokenHandler={tokenHandler} />
             <Switch>
               <Route exact path="/" component={Homepage} />

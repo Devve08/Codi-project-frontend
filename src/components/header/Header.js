@@ -60,7 +60,7 @@ function Header(props) {
               </Link>
             </button>
             <div className="span_cart_counter">
-              <span>{cart.length}</span>
+              {cart && <span>{cart.length}</span>}
             </div>
           </div>
         </div>

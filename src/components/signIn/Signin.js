@@ -2,6 +2,7 @@ import React, { useState } from "react";
 import { useClickOutside } from "../../customHooks/useClickOutside";
 import Login from "../login/Login";
 import Register from "../register/Register";
+import "./Signin.css";
 
 function Signin(props) {
   const [signInTrigger, setSignInTrigger] = useState(true);
@@ -53,7 +54,12 @@ function Signin(props) {
     <>
       <div className="main__inset__background"></div>
       <div className="main__form" ref={signOut}>
-        <button onClick={signoutPageHandler}>Sign-out</button>
+        <div className="main__form__btn">
+          <h2>Bye</h2>
+          <button className="form__btn" onClick={signoutPageHandler}>
+            Sign-out
+          </button>
+        </div>
       </div>
     </>
   ) : null;
