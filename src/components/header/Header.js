@@ -1,29 +1,37 @@
 import React, { useState } from "react";
 import "./Header.css";
 import { Link } from "react-router-dom";
-import Signin from "../../pages/Signin";
-
+import Signin from "../signIn/Signin";
+import { ProductContext } from "../../contexts/ProductContext";
+import { useLocation } from "react-router";
 
 function Header(props) {
-  // const loginToggle = () => {
-  //   const userForm = document.querySelector(".main__form");
-  //   if (userForm.classList.contains("display__none")) {
-  //     userForm.classList.add("display__block");
-  //     userForm.classList.remove("display__none");
-  //   } else {
-  //     userForm.classList.add("display__none");
-  //     userForm.classList.remove("display__block");
-  //   }
-  // };
 
-  const [test, setTest] = useState(false);
+  
+  const [loginPage, setLoginPage] = useState(false);
+  const [logoutPage, setLogoutPage] = useState(false);
+  const [logged, setLogged] = useState("Login");
+
+  const pageHandler = () => {
+    if (props.usernameToken !== false || logged !== "Login") {
+      setLogoutPage(true);
+      setLoginPage(false);
+    } else {
+      setLogoutPage(false);
+      setLoginPage(true);
+    }
+  };
+
+  const { value2 } = React.useContext(ProductContext);
+  const [cart] = value2;
+  let location = useLocation()
+  if (location.pathname.match(/admin/)){
+    return null
+  }
   return (
     <div className="header">
       <div className="header-container">
         <div className="header-container__search">
-          {/* <div>
-              <Icon icon="search" size={20} />
-            </div> */}
           <div className="input_div">
             <input
               type="search"
@@ -39,22 +47,22 @@ function Header(props) {
           </h1>
         </div>
         <div className="header-container__cart">
-          {/* <Link to="/login"> */}
           <button
             className="header-container__cart--btn-login"
-            onClick={() => setTest(true)}
+            onClick={() => pageHandler()}
           >
-            Login
+            {props.usernameToken ? props.usernameToken : logged}
           </button>
-          {/* </Link> */}
-          <button className="header-container__cart--btn-cart">
-
-            <Link className="link" to="/cart">
-            Cart <i className="far fa-shopping-cart"></i> {props.cart}
-            </Link>
-            
-
-          </button>
+          <div className="btn_cart_counter">
+            <button className="header-container__cart--btn-cart">
+              <Link className="link" to="/cart">
+                Cart <i className="far fa-shopping-cart"></i>
+              </Link>
+            </button>
+            <div className="span_cart_counter">
+              {cart && <span>{cart.length}</span>}
+            </div>
+          </div>
         </div>
       </div>
       <div className="header__navbar">
@@ -91,7 +99,14 @@ function Header(props) {
           </li>
         </ul>
       </div>
-      <Signin trigger={test} setTrigger={setTest} />
+      <Signin
+        loginPage={loginPage}
+        setLoginPage={setLoginPage}
+        setLogged={setLogged}
+        logoutPage={logoutPage}
+        tokenHandler={() => props.tokenHandler()}
+        setLogoutPage={setLogoutPage}
+      />
     </div>
   );
 }

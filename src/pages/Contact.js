@@ -1,5 +1,6 @@
 import React from "react";
 import "./Contact.css";
+<<<<<<< HEAD
 import emailjs from "emailjs-com";
 
 export default function Contact() {
@@ -24,6 +25,10 @@ export default function Contact() {
     e.target.reset();
   }
 
+=======
+
+export default function Contact() {
+>>>>>>> Dev
   return (
     <div class="container__contactUs">
       <div class="cont1">
@@ -31,27 +36,40 @@ export default function Contact() {
       </div>
       <div class="cont2">
         <h2 class="cont2__header"> Email Us: </h2>
+<<<<<<< HEAD
         <form class="cont2__form" onSubmit={sendEmail}>
+=======
+        <form class="cont2__form">
+>>>>>>> Dev
           {/* <p>Enter your full name:</p> */} <br />
           <input
             type="text"
             placeholder="Enter your full name "
             class="cont2__form__inputs"
+<<<<<<< HEAD
             name="name"
+=======
+>>>>>>> Dev
           />
           {/* <p>Enter your email:</p> */} <br />
           <input
             type="text"
             placeholder="Enter your email"
             class="cont2__form__inputs"
+<<<<<<< HEAD
             name="email"
+=======
+>>>>>>> Dev
           />
           <br />
           <input
             type="text"
             placeholder="Subject"
             class="cont2__form__inputs"
+<<<<<<< HEAD
             name="subject"
+=======
+>>>>>>> Dev
           />
           {/* <p>Message</p> */} <br />
           <textarea
@@ -59,6 +77,7 @@ export default function Contact() {
             cols="30"
             rows="10"
             class="cont2__form__textarea"
+<<<<<<< HEAD
             name="message"
           ></textarea>
           <br />
@@ -66,6 +85,12 @@ export default function Contact() {
           <button class="cont2__form__button" type="submit" value="Send">
             Send
           </button>
+=======
+          ></textarea>
+          <br />
+          {/* <p>Send Button</p> */}
+          <button class="cont2__form__button">Send</button>
+>>>>>>> Dev
         </form>
       </div>
 

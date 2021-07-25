@@ -10,7 +10,7 @@ export default function Filter() {
                       Categories
                   </h2>
                   <ul className="category_name">
-                      <li> <Link className='link'> Shoes</Link></li>
+                      <li><Link className='link'> Shoes</Link></li>
                       <li><Link className='link'>Jeans</Link></li>
                       <li><Link className="link">T-shirts</Link></li>
                       <li><Link className="link">Jackets</Link></li>
