@@ -1,9 +1,9 @@
 import React, { useState } from "react";
+import axios from "axios";
 
 export default function AddProduct() {
   const [product, setProduct] = useState({
     name: "",
-    image: "",
     sex: "",
     category: "",
     stock: "",
@@ -15,9 +15,10 @@ export default function AddProduct() {
     numReviews: "",
   });
 
+  const [fileName, setFileName] = useState("");
+
   const {
     name,
-    image,
     sex,
     category,
     stock,
@@ -33,24 +34,41 @@ export default function AddProduct() {
     setProduct({ ...product, [e.target.name]: e.target.value });
   };
 
-  
+  const onChangeFile = (e) => {
+    setFileName(e.target.files[0]);
+  };
+
+  const sendFile = (e) => {
+    e.preventDefault()
+    const formData = new FormData();
+    formData.append("product", product);
+    formData.append("productImage", fileName );
+    console.log(product)
+    console.log(fileName)
+
+    axios.post('http://localhost:4000/product/create', formData)
+    .then(res => {
+      console.log("hi", res)
+    })
+    .catch(err => {
+      console.log("ayre", err)
+    })
+  };
 
   return (
     <div className="user--form--container">
       <form
-        action="http://localhost:4000/product/create"
-        method="POST"
+        encType="multipart/form-data"
         className="user--form"
       >
         <div className="form--label--input">
           <label htmlFor="image">Image</label>
           <input
             type="file"
-            name="image"
-            id="image"
-            value={image}
-            onChange={(e) => onInputChange(e)}
-          /> 
+            fileName="productImage"
+            id="file"
+            onChange={onChangeFile}
+          />
         </div>
         <div className="form--label--input">
           <label htmlFor="name">Name</label>
@@ -153,7 +171,7 @@ export default function AddProduct() {
           />
         </div>
         <div className="form--label--input">
-          <button type="submit" className="form--btn">
+          <button onClick={sendFile} type="submit" className="form--btn">
             Add Product
           </button>
         </div>

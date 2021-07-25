@@ -7,6 +7,7 @@ import Loading from "../loading/Loading";
 import MessageBox from "../loading/MessageBox";
 import { ProductContext } from "../../contexts/ProductContext";
 
+
 export default function Product(props) {
   const { id } = useParams();
   const { value1, value2, value3 } = React.useContext(ProductContext);
@@ -48,8 +49,9 @@ export default function Product(props) {
                     </div>
                     <div className="product_screen--details">
                     
+                    
                       <ul className="screen--details">
-                        <li>{item.name}</li>
+                        <li> {item.name}</li>
                         <li>
                           {" "}
                           <span>{item.brand}</span> Brand
