@@ -8,7 +8,6 @@ import MessageBox from "../loading/MessageBox";
 import { ProductContext } from "../../contexts/ProductContext";
 import axios from "axios";
 
-
 export default function Product(props) {
   const { id } = useParams();
   const { value1, value2, value3 } = React.useContext(ProductContext);
@@ -60,11 +59,6 @@ export default function Product(props) {
                       <img src={item.image} alt="" />
                     </div>
                     <div className="product_screen--details">
-<<<<<<< HEAD
-                    
-                    
-=======
->>>>>>> dd39d7dbdc02350d0892c62659b37d18e3e5825d
                       <ul className="screen--details">
                         <li> {item.name}</li>
                         <li>

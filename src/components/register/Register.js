@@ -126,7 +126,11 @@ function Register(props) {
               onChange={(e) => insertForm(e)}
             />
           </div>
-          <button className="form__btn" onClick={register}>
+          <button
+            className="form__btn"
+            onClick={register}
+            style={{ width: "100%" }}
+          >
             submit
           </button>
           {errorMessage && <h3 className="signUp__error">{errorMessage}</h3>}
