@@ -1,7 +1,29 @@
 import React from "react";
 import "./Contact.css";
+import emailjs from "emailjs-com";
 
 export default function Contact() {
+  function sendEmail(e) {
+    e.preventDefault();
+
+    emailjs
+      .sendForm(
+        "service_lp4tmds",
+        "template_ftqxrvf",
+        e.target,
+        "user_rtFieJrXWmYBsXziuZjN2"
+      )
+      .then(
+        (result) => {
+          console.log(result.text);
+        },
+        (error) => {
+          console.log(error.text);
+        }
+      );
+    e.target.reset();
+  }
+
   return (
     <div class="container__contactUs">
       <div class="cont1">
@@ -9,24 +31,27 @@ export default function Contact() {
       </div>
       <div class="cont2">
         <h2 class="cont2__header"> Email Us: </h2>
-        <form class="cont2__form">
+        <form class="cont2__form" onSubmit={sendEmail}>
           {/* <p>Enter your full name:</p> */} <br />
           <input
             type="text"
             placeholder="Enter your full name "
             class="cont2__form__inputs"
+            name="name"
           />
           {/* <p>Enter your email:</p> */} <br />
           <input
             type="text"
             placeholder="Enter your email"
             class="cont2__form__inputs"
+            name="email"
           />
           <br />
           <input
             type="text"
             placeholder="Subject"
             class="cont2__form__inputs"
+            name="subject"
           />
           {/* <p>Message</p> */} <br />
           <textarea
@@ -34,10 +59,13 @@ export default function Contact() {
             cols="30"
             rows="10"
             class="cont2__form__textarea"
+            name="message"
           ></textarea>
           <br />
           {/* <p>Send Button</p> */}
-          <button class="cont2__form__button">Send</button>
+          <button class="cont2__form__button" type="submit" value="Send">
+            Send
+          </button>
         </form>
       </div>
 

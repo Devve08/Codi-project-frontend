@@ -79,10 +79,7 @@ function Login(props) {
         )}
         <div className="main__form__sign-up">
           <h1 className="main__form__sign-up--text">Sign-up now for free!!</h1>
-          <button
-            className="main__form__sign-up--btn"
-            onClick={() => props.triggerHandler()}
-          >
+          <button className="form__btn" onClick={() => props.triggerHandler()}>
             Sign-up
           </button>
         </div>

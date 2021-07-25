@@ -55,7 +55,7 @@ function Signin(props) {
       <div className="main__inset__background"></div>
       <div className="main__form" ref={signOut}>
         <div className="main__form__btn">
-          <h2>Bye</h2>
+          <h2>Allah wel nabe</h2>
           <button className="form__btn" onClick={signoutPageHandler}>
             Sign-out
           </button>

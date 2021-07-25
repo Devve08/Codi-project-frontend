@@ -8,7 +8,6 @@ import MessageBox from "../loading/MessageBox";
 import { ProductContext } from "../../contexts/ProductContext";
 import axios from "axios";
 
-
 export default function Product(props) {
   const { id } = useParams();
   const { value1, value2, value3 } = React.useContext(ProductContext);
@@ -19,9 +18,17 @@ export default function Product(props) {
 
   const addToCart = (product) => {
     let localToken = localStorage.getItem("token");
-    console.log(product._id);
-    if (cart.includes(product)) {
-      setCart([...cart]);
+    console.log(cart, product._id);
+    let letItBe = false;
+    cart.map((item) => {
+      if (item.product_id.match(product._id)) {
+        letItBe = true;
+        return letItBe;
+      }
+    });
+    if (letItBe === true) {
+      console.log("working");
+      return setCart([...cart]);
     } else {
       setCart([...cart, { product_id: product._id }]);
       axios
