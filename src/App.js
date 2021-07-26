@@ -16,6 +16,12 @@ import ShopHeader from "./components/card/shopheader";
 import Axios from "axios";
 import { useEffect, useState } from "react";
 import Admin from "./pages/admin dashboard/Admin";
+import Shoes from "./pages/categories/Shoes";
+import Pants from "./pages/categories/Pants"
+import Shorts from "./pages/categories/Shorts";
+import Shirts from "./pages/categories/Shirts"
+import Accessories from "./pages/categories/Accessories";
+import Jackets from "./pages/categories/Jacket";
 
 function App() {
   const [usernameToken, setUsernameToken] = useState(false); // Token State
@@ -55,6 +61,13 @@ function App() {
               <Route exact path="/" component={Homepage} />
               <Route path="/shopwomen" component={ShopWomen} />
               <Route path="/shopmen" component={ShopMen} />
+              <Route path="/category/shoes" component={Shoes} />
+              <Route path="/category/pants" component={Pants} />
+              <Route path="/category/shirts" component={Shirts} />
+              <Route path="/category/pants" component={Pants} />
+              <Route path="/category/shorts" component={Shorts} />
+              <Route path="/category/accessories" component={Accessories} />
+              <Route path="/category/jackets" component={Jackets} />
               <Route path="/contactus" component={Contact} />
               <Route path="/sale" component={Sale} />
               <Route path="/product/:id" component={Product} />

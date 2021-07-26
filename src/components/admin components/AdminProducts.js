@@ -8,7 +8,7 @@ import { Link } from "react-router-dom";
 export default function AdminProducts() {
   const { value1 } = React.useContext(ProductContext);
   const [products, setProducts] = value1;
-  const [error, setError] = useState(false);
+  const [setError] = useState(false);
 
   const fetchData = () => {
     axios

@@ -10,13 +10,12 @@ export default function Filter() {
                       Categories
                   </h2>
                   <ul className="category_name">
-                      <li><Link className='link'> Shoes</Link></li>
-                      <li><Link className='link'>Jeans</Link></li>
-                      <li><Link className="link">T-shirts</Link></li>
-                      <li><Link className="link">Jackets</Link></li>
-                      <li><Link className="link">Pants</Link></li>
-                      <li><Link className="link">Accessories</Link></li>
-                      <li><Link className="link">Shorts</Link></li>
+                      <li><Link to="/category/shoes" className='link'> Shoes</Link></li>
+                      <li><Link to="/category/pants" className='link'>Pants</Link></li>
+                      <li><Link to="/category/shirts" className="link">T-shirts</Link></li>
+                      <li><Link to="/category/jackets" className="link">Jackets</Link></li>
+                      <li><Link to="/category/accessories" className="link">Accessories</Link></li>
+                      <li><Link to="/category/shorts" className="link">Shorts</Link></li>
                   </ul>
               </div>
               <div className="filter_catergory">

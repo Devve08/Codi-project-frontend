@@ -5,7 +5,7 @@ import { Link } from "react-router-dom";
 
 export default function AdminUsers() {
   const [users, setUsers] = useState([]);
-  const [error, setError] = useState(false);
+  const [setError] = useState(false);
 
   const fetchData = () => {
     axios

@@ -3,7 +3,7 @@ import "./Admin.css";
 import AdminNavbar from "../../components/admin components/AdminNavbar";
 import AdminProducts from "../../components/admin components/AdminProducts";
 import AdminUsers from "../../components/admin components/AdminUsers";
-import { BrowserRouter as Switch, Route } from "react-router-dom";
+import { BrowserRouter as  Route } from "react-router-dom";
 import AddUser from "../../components/admin components/AddUser";
 import UpdateUser from "../../components/admin components/UpdateUser";
 import AddProduct from "../../components/admin components/AddProduct";
