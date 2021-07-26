@@ -1,13 +1,12 @@
 import React from "react";
 import { useState, useEffect } from "react";
 import axios from "axios";
-import { ProductContext } from "../../contexts/ProductContext";
 import Rating from "../rating/Rating";
 import { Link } from "react-router-dom";
 
 export default function AdminProducts() {
-  const { value1 } = React.useContext(ProductContext);
-  const [products, setProducts] = value1;
+ 
+  const [products, setProducts] = useState([])
   const [setError] = useState(false);
 
   const fetchData = () => {
