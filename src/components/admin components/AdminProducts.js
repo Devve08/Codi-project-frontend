@@ -15,7 +15,7 @@ export default function AdminProducts() {
       .get("http://localhost:4000/product")
       .then((res) => {
         setProducts(res.data);
-        console.log(res.data);
+        console.log(res);
       })
       .catch((error) => {
         setError({ message: error.message });

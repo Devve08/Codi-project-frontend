@@ -30,10 +30,6 @@ export default function Admin() {
         <Route path="/admin/update-user/:id" >
           <UpdateUser />
         </Route>
-  
-           
-          
-      
     </div>
   );
 }
