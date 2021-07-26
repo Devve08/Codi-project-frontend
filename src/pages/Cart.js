@@ -24,11 +24,8 @@ export default function Cart() {
       })
       .catch();
     setCart(
-      ...cart,
-      cart.map((cartItem, index) => {
-        if (cartItem.product_id === item._id) {
-          cart.splice(index, 1);
-        }
+      cart.filter((cartItem) => {
+        return cartItem.product_id !== item._id;
       })
     );
   };
@@ -73,7 +70,7 @@ export default function Cart() {
                             </span>
                           </li>
 
-                          <li className="quantity_size">
+                          {/* <li className="quantity_size">
                             <div>
                               <span>Q:</span>
                               <select
@@ -101,7 +98,7 @@ export default function Cart() {
                                 <option value="large">L</option>
                               </select>
                             </div>
-                          </li>
+                          </li> */}
                           <li>
                             <div>
                               <button
