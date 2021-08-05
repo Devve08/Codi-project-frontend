@@ -2,36 +2,47 @@ import { createContext, useEffect, useState } from "react";
 import React from "react";
 import axios from "axios";
 import MessageBox from "../components/loading/MessageBox";
+import Loading from "../components/loading/Loading";
 
 export const ProductContext = createContext();
 
 export const ProductProvider = (props) => {
-  const [products, setProducts] = useState([]);
+  const [products, setProducts] = useState(null);
   const [error, setError] = useState(null);
+  const [cart, setCart] = useState(null);
+  const [loading, setLoading] = useState(false);
 
   const fetchData = () => {
+    setCart(props.cartInfos);
+    setLoading(true);
     axios
-    .get("http://localhost:4000/product")
-    .then((res) => {
-      setProducts(res.data)
-      // setError(false)
-    })
-    .catch((error) => {
-      setError({message: "error 404"});
-    })
-  }
-  
+      .get("http://localhost:4000/product")
+      .then((res) => {
+        setProducts(res.data);
+        setLoading(false);
+      })
+      .catch((error) => {
+        setError({ message: error.message });
+        setLoading(false);
+      });
+  };
   useEffect(() => {
     fetchData();
-  },[])
-
+  }, [props.cartInfos]);
   return (
     <>
-      {error ? (
+      {loading ? (
+        <Loading />
+      ) : error ? (
         <MessageBox error={error.message} />
       ) : (
-        <ProductContext.Provider value={[products, setProducts]}>
-          {console.log("entered")}
+        <ProductContext.Provider
+          value={{
+            value1: [products, setProducts],
+            value2: [cart, setCart],
+            value3: [loading, setLoading],
+          }}
+        >
           {props.children}
         </ProductContext.Provider>
       )}
