@@ -24,11 +24,8 @@ export default function Cart() {
       })
       .catch();
     setCart(
-      ...cart,
-      cart.map((cartItem, index) => {
-        if (cartItem.product_id === item._id) {
-          cart.splice(index, 1);
-        }
+      cart.filter((cartItem) => {
+        return cartItem.product_id !== item._id;
       })
     );
   };
