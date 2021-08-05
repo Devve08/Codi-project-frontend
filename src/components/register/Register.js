@@ -17,6 +17,7 @@ function Register(props) {
   const register = (e) => {
     e.preventDefault();
     if (form.passwordReg === form.checkPassword) {
+      console.log("working");
       Axios.post("http://localhost:4000/user/add", {
         name: form.nameReg,
         username: form.usernameReg,
@@ -61,7 +62,7 @@ function Register(props) {
         </div>
         <form action="" className="form__sign-up">
           <div>
-            <h1>Sign-up</h1>
+            <h2>Sign-up</h2>
           </div>
           <div className="form__full-name form__input">
             <label for="full-name">Full name</label>
